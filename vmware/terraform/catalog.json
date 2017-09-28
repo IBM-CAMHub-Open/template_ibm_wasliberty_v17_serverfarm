@@ -1,0 +1,63 @@
+{
+    "name": "IBM Liberty serverfarm topology - VMware vSphere",
+    "description": "This template will install the Liberty server farm topology with 2 nodes.",
+    "version": "1.0",
+    "imageUrl": "",
+    "image": "",
+    "type": "chefcontent",
+    "status": "active",
+    "manifest": {
+      "template_type": "Terraform",
+      "template_format": "HCL",
+      "template_provider": "VMware vSphere",
+      "template": {
+        "templateData": "",
+        "templateVariables": "",
+        "templateOutput": ""
+      },
+      "template_source": {
+        "githubRepoUrl": "",
+        "githubAccessToken": "",
+        "relativePathToTemplateFolder": "vmware/terraform",
+        "templateFileName": "ibm_wasliberty_v17_serverfarm.tf"
+      }
+    },
+    "metadata": {
+      "displayName": "IBM Liberty serverfarm topology",
+      "providerDisplayName": "VMware vSphere",
+      "longDescription": "This template will install the Liberty server farm topology with 2 nodes.",
+      "bullets": [{
+    "title": "Clouds",
+    "description": " VMWare<br>"},
+{
+    "title": "Template Version",
+    "description": "V1.0<br>"},
+{
+    "title": "Operating Systems Supported",
+    "description": "Redhat 7, Ubuntu 16<br>"},
+{
+    "title": "Topology",
+    "description": "1) Liberty server - Central Node<br>2) Liberty server - Application Node<br>"},
+{
+    "title": "Software Deployed",
+    "description": "- IBM Liberty version 17<br>"},
+{
+    "title": "Default Virtual Machine Settings",
+    "description": "Central node<br>  aws:           - t2.micro, Storage = 20GB<br>          - VCPU = 1, Memory = 4GB, Storage = 20GB<br>Liberty node<br>  aws:           - t2.micro, Storage = 20GB<br>         - VCPU = 1, Memory = 4GB, Storage = 20GB<br>"},
+{
+    "title": "Usage and Special Notes",
+    "description": "- Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>- Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>- The plugin is generated on all nodes and merged on the Central node.<br>"}
+],
+      "featuredImageUrl": "",
+      "imageUrl": "",
+      "mediumImageUrl": "",
+      "smallImageUrl": "",
+      "documentationUrl": "",
+      "termsUrl": "",
+      "media": [
+      ]
+    },
+    "toolchain": {
+      "git": "https://github.com/ibmcam/cam-toolchain"
+    }
+}

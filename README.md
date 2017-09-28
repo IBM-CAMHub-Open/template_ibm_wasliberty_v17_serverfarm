@@ -1,1 +1,1 @@
-# template_ibm_wasliberty_v17_serverfarm
+Copyright IBM Corp. 2017, 2017
