@@ -9,7 +9,7 @@ This template will install the Liberty server farm topology with 2 nodes.<br>
 
 ### Clouds
 
- VMWare<br>
+ VMware<br>
 <br>
 ### Template Version
 
@@ -39,9 +39,11 @@ Liberty node<br>
 <br>
 ### Usage and Special Notes
 
-- Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>
-- Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>
-- The plugin is generated on all nodes and merged on the Central node.<br>
+1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>
+2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>
+3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>
+4. The plugin is generated on all nodes and merged on the Central node.<br>
+<br>
 
 
 ## Overview

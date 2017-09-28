@@ -28,7 +28,7 @@
       "longDescription": "This template will install the Liberty server farm topology with 2 nodes.",
       "bullets": [{
     "title": "Clouds",
-    "description": " VMWare<br>"},
+    "description": " VMware<br>"},
 {
     "title": "Template Version",
     "description": "V1.0<br>"},
@@ -46,7 +46,7 @@
     "description": "Central node<br>  aws:           - t2.micro, Storage = 20GB<br>          - VCPU = 1, Memory = 4GB, Storage = 20GB<br>Liberty node<br>  aws:           - t2.micro, Storage = 20GB<br>         - VCPU = 1, Memory = 4GB, Storage = 20GB<br>"},
 {
     "title": "Usage and Special Notes",
-    "description": "- Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>- Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>- The plugin is generated on all nodes and merged on the Central node.<br>"}
+    "description": "1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>4. The plugin is generated on all nodes and merged on the Central node.<br>"}
 ],
       "featuredImageUrl": "",
       "imageUrl": "",
