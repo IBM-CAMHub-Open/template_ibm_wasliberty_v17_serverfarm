@@ -1,4 +1,4 @@
-# Template - IBM Liberty serverfarm topology
+# Template - IBM Liberty V17 server farm topology
 Template Version - 1.0
 
 ## Description
@@ -17,7 +17,9 @@ V1.0<br>
 <br>
 ### Operating Systems Supported
 
-Redhat 7, Ubuntu 16<br>
+Red Hat Enterprise Linux 7<br>
+Red Hat Enterprise Linux 6<br>
+Ubuntu 16.04<br>
 <br>
 ### Topology
 
@@ -26,23 +28,21 @@ Redhat 7, Ubuntu 16<br>
 <br>
 ### Software Deployed
 
-- IBM Liberty version 17<br>
+IBM Liberty version 17<br>
 <br>
 ### Default Virtual Machine Settings
 
 Central node<br>
-  aws:           - t2.micro, Storage = 20GB<br>
-          - VCPU = 1, Memory = 4GB, Storage = 20GB<br>
+   vCPU = 1, Memory = 4GB, Storage = 25GB<br>
 Liberty node<br>
-  aws:           - t2.micro, Storage = 20GB<br>
-         - VCPU = 1, Memory = 4GB, Storage = 20GB<br>
+   vCPU = 1, Memory = 4GB, Storage = 25GB<br>
 <br>
 ### Usage and Special Notes
 
 1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>
 2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>
 3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>
-4. The plugin is generated on all nodes and merged on the Central node.<br>
+4. The plugin is generated on all nodes and merged on the Central node.  <br>
 <br>
 
 
@@ -97,43 +97,43 @@ The following table describes the nodes and relevant software component deployed
     <th>Description</th>
   </tr>
   <tr>
-    <td>centralnode</code></td>
+    <td>LibertyCentralNode01</code></td>
     <td>liberty_create_server</code></td>
     <td>create and configure a liberty server instance</code></td>
   </tr>
   <tr>
-    <td>centralnode</code></td>
-    <td>liberty_plugin_generate</code></td>
-    <td>create and configure a liberty server farm</code></td>
-  </tr>
-  <tr>
-    <td>centralnode</code></td>
+    <td>LibertyCentralNode01</code></td>
     <td>liberty_install</code></td>
     <td>installs WAS Liberty Base</code></td>
   </tr>
   <tr>
-    <td>libertynode</code></td>
+    <td>LibertyCentralNode01</code></td>
+    <td>liberty_plugin_generate</code></td>
+    <td>create and configure a liberty server farm</code></td>
+  </tr>
+  <tr>
+    <td>LibertyNode01</code></td>
     <td>liberty_plugin_merge</code></td>
     <td>create and configure a liberty server farm</code></td>
   </tr>
   <tr>
-    <td>libertynode</code></td>
-    <td>liberty_create_server</code></td>
-    <td>create and configure a liberty server instance</code></td>
-  </tr>
-  <tr>
-    <td>libertynode</code></td>
-    <td>liberty_plugin_merge_setup</code></td>
+    <td>LibertyNode01</code></td>
+    <td>liberty_plugin_generate</code></td>
     <td>create and configure a liberty server farm</code></td>
   </tr>
   <tr>
-    <td>libertynode</code></td>
+    <td>LibertyNode01</code></td>
     <td>liberty_install</code></td>
     <td>installs WAS Liberty Base</code></td>
   </tr>
   <tr>
-    <td>libertynode</code></td>
-    <td>liberty_plugin_generate</code></td>
+    <td>LibertyNode01</code></td>
+    <td>liberty_create_server</code></td>
+    <td>create and configure a liberty server instance</code></td>
+  </tr>
+  <tr>
+    <td>LibertyNode01</code></td>
+    <td>liberty_plugin_merge_setup</code></td>
     <td>create and configure a liberty server farm</code></td>
   </tr>
 </table>

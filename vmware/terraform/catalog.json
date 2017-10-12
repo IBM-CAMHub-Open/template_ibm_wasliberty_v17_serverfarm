@@ -1,5 +1,5 @@
 {
-    "name": "IBM Liberty serverfarm topology - VMware vSphere",
+    "name": "IBM Liberty V17 server farm topology - VMware vSphere",
     "description": "This template will install the Liberty server farm topology with 2 nodes.",
     "version": "1.0",
     "imageUrl": "",
@@ -23,7 +23,7 @@
       }
     },
     "metadata": {
-      "displayName": "IBM Liberty serverfarm topology",
+      "displayName": "IBM Liberty V17 server farm topology",
       "providerDisplayName": "VMware vSphere",
       "longDescription": "This template will install the Liberty server farm topology with 2 nodes.",
       "bullets": [{
@@ -34,19 +34,19 @@
     "description": "V1.0<br>"},
 {
     "title": "Operating Systems Supported",
-    "description": "Redhat 7, Ubuntu 16<br>"},
+    "description": "Red Hat Enterprise Linux 7<br>Red Hat Enterprise Linux 6<br>Ubuntu 16.04<br>"},
 {
     "title": "Topology",
     "description": "1) Liberty server - Central Node<br>2) Liberty server - Application Node<br>"},
 {
     "title": "Software Deployed",
-    "description": "- IBM Liberty version 17<br>"},
+    "description": "IBM Liberty version 17<br>"},
 {
     "title": "Default Virtual Machine Settings",
-    "description": "Central node<br>  aws:           - t2.micro, Storage = 20GB<br>          - VCPU = 1, Memory = 4GB, Storage = 20GB<br>Liberty node<br>  aws:           - t2.micro, Storage = 20GB<br>         - VCPU = 1, Memory = 4GB, Storage = 20GB<br>"},
+    "description": "Central node<br>   vCPU = 1, Memory = 4GB, Storage = 25GB<br>Liberty node<br>   vCPU = 1, Memory = 4GB, Storage = 25GB<br>"},
 {
     "title": "Usage and Special Notes",
-    "description": "1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>4. The plugin is generated on all nodes and merged on the Central node.<br>"}
+    "description": "1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>4. The plugin is generated on all nodes and merged on the Central node.  <br>"}
 ],
       "featuredImageUrl": "",
       "imageUrl": "",
