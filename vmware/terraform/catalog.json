@@ -1,5 +1,5 @@
 {
-    "name": "IBM Liberty V17 server farm topology - VMware vSphere",
+    "name": "IBM WAS Liberty V17 server farm topology - VMware vSphere",
     "description": "This template will install the Liberty server farm topology with 2 nodes.",
     "version": "1.0",
     "imageUrl": "",
@@ -23,7 +23,7 @@
       }
     },
     "metadata": {
-      "displayName": "IBM Liberty V17 server farm topology",
+      "displayName": "IBM WAS Liberty V17 server farm topology",
       "providerDisplayName": "VMware vSphere",
       "longDescription": "This template will install the Liberty server farm topology with 2 nodes.",
       "bullets": [{

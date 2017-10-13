@@ -51,6 +51,191 @@ variable "ibm_stack_name" {
 
 #### Default OS Admin User Map ####
 
+##### CentralNode01 variables #####
+#Variable : CentralNode01-image
+variable "CentralNode01-image" {
+  type = "string"
+  description = "Operating system image id / template that should be used when creating the virtual image"
+}
+
+#Variable : CentralNode01-name
+variable "CentralNode01-name" {
+  type = "string"
+  description = "Short hostname of virtual machine"
+}
+
+#Variable : CentralNode01-os_admin_user
+variable "CentralNode01-os_admin_user" {
+  type = "string"
+  description = "Name of the admin user account in the virtual machine that will be accessed via SSH"
+}
+
+#Variable : CentralNode01_ssh_private_key_path
+variable "CentralNode01_ssh_private_key_path" {
+  type = "string"
+  description = "Absolute path of the Liberty private key"
+  default = "/root/.ssh/CAMkey.pem"
+}
+
+#Variable : CentralNode01_was_liberty_base_version
+variable "CentralNode01_was_liberty_base_version" {
+  type = "string"
+  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2"
+  default = "17.0.2"
+}
+
+#Variable : CentralNode01_was_liberty_edition
+variable "CentralNode01_was_liberty_edition" {
+  type = "string"
+  description = "Indicates which Liberty offering should be installed. Valid values are: base, core, nd"
+  default = "base"
+}
+
+#Variable : CentralNode01_was_liberty_farm_central_node
+variable "CentralNode01_was_liberty_farm_central_node" {
+  type = "string"
+  description = "Hostname/IP of the liberty node which will gather and merge the plugins. Leave empty when deploying the central node itself"
+}
+
+#Variable : CentralNode01_was_liberty_farm_logFileName
+variable "CentralNode01_was_liberty_farm_logFileName" {
+  type = "string"
+  description = "Name of the Liberty farm log file"
+  default = "serverfarm.log"
+}
+
+#Variable : CentralNode01_was_liberty_farm_pluginInstallRoot
+variable "CentralNode01_was_liberty_farm_pluginInstallRoot" {
+  type = "string"
+  description = "pluginInstallRoot"
+  default = "plugin_install_root"
+}
+
+#Variable : CentralNode01_was_liberty_farm_sslCertlabel
+variable "CentralNode01_was_liberty_farm_sslCertlabel" {
+  type = "string"
+  description = "Name of the ssl Cert label which will be added to the keystore"
+  default = "definedbyuser"
+}
+
+#Variable : CentralNode01_was_liberty_farm_sslKeyringLocation
+variable "CentralNode01_was_liberty_farm_sslKeyringLocation" {
+  type = "string"
+  description = "Full path to the liberty farm ssl Keyring, path must not include the name of the Keyring file"
+  default = "/tmp/liberty/sslkeyring"
+}
+
+#Variable : CentralNode01_was_liberty_farm_sslStashfileLocation
+variable "CentralNode01_was_liberty_farm_sslStashfileLocation" {
+  type = "string"
+  description = "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file"
+  default = "/tmp/liberty/stashfile"
+}
+
+#Variable : CentralNode01_was_liberty_farm_webserverName
+variable "CentralNode01_was_liberty_farm_webserverName" {
+  type = "string"
+  description = "A descriptive name for the web server"
+  default = "websrv"
+}
+
+#Variable : CentralNode01_was_liberty_farm_webserverPort
+variable "CentralNode01_was_liberty_farm_webserverPort" {
+  type = "string"
+  description = "HTTP Transport port that the webserver is listening on"
+  default = "88"
+}
+
+#Variable : CentralNode01_was_liberty_install_dir
+variable "CentralNode01_was_liberty_install_dir" {
+  type = "string"
+  description = "The installation root directory for the WebSphere Liberty product binaries"
+  default = "/opt/IBM/WebSphere/Liberty"
+}
+
+#Variable : CentralNode01_was_liberty_install_grp
+variable "CentralNode01_was_liberty_install_grp" {
+  type = "string"
+  description = "Operating system group name that will be assigned to the product installation"
+  default = "root"
+}
+
+#Variable : CentralNode01_was_liberty_install_user
+variable "CentralNode01_was_liberty_install_user" {
+  type = "string"
+  description = "Operating system userid that will be used to install the product. Userid will be created if it does not exist"
+  default = "root"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_feature
+variable "CentralNode01_was_liberty_liberty_servers_server1_feature" {
+  type = "string"
+  description = "Lists the Liberty features that should be included in the feature manager list. For example, webProfile-7.0 adminCenter-1.0"
+  default = "webProfile-7.0 adminCenter-1.0"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_httpport
+variable "CentralNode01_was_liberty_liberty_servers_server1_httpport" {
+  type = "string"
+  description = "HTTP Transport value that will be set in the defaultHttpEndpoint endpoint in server.xml"
+  default = "9080"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_httpsport
+variable "CentralNode01_was_liberty_liberty_servers_server1_httpsport" {
+  type = "string"
+  description = "Secure HTTP Transport value that will be set in the defaultHttpEndpoint endpoint in server.xml"
+  default = "9443"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_keystore_id
+variable "CentralNode01_was_liberty_liberty_servers_server1_keystore_id" {
+  type = "string"
+  description = "Keystore id that will be used when setting up the keyStore attribute in the server.xml"
+  default = "defaultKeyStore"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_keystore_password
+variable "CentralNode01_was_liberty_liberty_servers_server1_keystore_password" {
+  type = "string"
+  description = "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_name
+variable "CentralNode01_was_liberty_liberty_servers_server1_name" {
+  type = "string"
+  description = "Name of the initial Liberty server to be created during provisioning"
+  default = "defaultServer"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name
+variable "CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name" {
+  type = "string"
+  description = "Administrative console username used for accessing the console, the associated password is the admin_user password"
+  default = "admin"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password
+variable "CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password" {
+  type = "string"
+  description = "Password for the Liberty administrative user name, this value to be stored in the Chef Vault"
+}
+
+#Variable : CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role
+variable "CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role" {
+  type = "string"
+  description = "Liberty role for which administrative users are to be added to, the admin_user will be added to this role by default"
+  default = "admin"
+}
+
+#Variable : CentralNode01_was_liberty_wlp_user_dir
+variable "CentralNode01_was_liberty_wlp_user_dir" {
+  type = "string"
+  description = "Liberty directory which product configuration will be written"
+  default = "/opt/IBM/WebSphere/Liberty/usr"
+}
+
+
 ##### Environment variables #####
 #Variable : ibm_im_repo
 variable "ibm_im_repo" {
@@ -105,191 +290,6 @@ variable "ibm_sw_repo_user" {
 
 ##### Image Parameters variables #####
 
-##### LibertyCentralNode01 variables #####
-#Variable : LibertyCentralNode01-image
-variable "LibertyCentralNode01-image" {
-  type = "string"
-  description = "Operating system image id / template that should be used when creating the virtual image"
-}
-
-#Variable : LibertyCentralNode01-name
-variable "LibertyCentralNode01-name" {
-  type = "string"
-  description = "Short hostname of virtual machine"
-}
-
-#Variable : LibertyCentralNode01-os_admin_user
-variable "LibertyCentralNode01-os_admin_user" {
-  type = "string"
-  description = "Name of the admin user account in the virtual machine that will be accessed via SSH"
-}
-
-#Variable : LibertyCentralNode01_ssh_private_key_path
-variable "LibertyCentralNode01_ssh_private_key_path" {
-  type = "string"
-  description = "Liberty private key path"
-  default = "/root/.ssh/CAMkey.pem"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_base_version
-variable "LibertyCentralNode01_was_liberty_base_version" {
-  type = "string"
-  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2"
-  default = "17.0.2"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_edition
-variable "LibertyCentralNode01_was_liberty_edition" {
-  type = "string"
-  description = "Indicates which Liberty offering should be installed. Valid values are: base, core, nd"
-  default = "base"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_central_node
-variable "LibertyCentralNode01_was_liberty_farm_central_node" {
-  type = "string"
-  description = "Liberty farm central node"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_logFileName
-variable "LibertyCentralNode01_was_liberty_farm_logFileName" {
-  type = "string"
-  description = "liberty farm log File Name"
-  default = "serverfarm.log"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_pluginInstallRoot
-variable "LibertyCentralNode01_was_liberty_farm_pluginInstallRoot" {
-  type = "string"
-  description = "Liberty farm plugin Install Root"
-  default = "plugin_install_root"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_sslCertlabel
-variable "LibertyCentralNode01_was_liberty_farm_sslCertlabel" {
-  type = "string"
-  description = "Liberty farm ssl Cert label"
-  default = "definedbyuser"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_sslKeyringLocation
-variable "LibertyCentralNode01_was_liberty_farm_sslKeyringLocation" {
-  type = "string"
-  description = "Liberty farm ssl Stashfile directory"
-  default = "/tmp/liberty/sslkeyring"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_sslStashfileLocation
-variable "LibertyCentralNode01_was_liberty_farm_sslStashfileLocation" {
-  type = "string"
-  description = "Liberty farm ssl Stashfile directory"
-  default = "/tmp/liberty/stashfile"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_webserverName
-variable "LibertyCentralNode01_was_liberty_farm_webserverName" {
-  type = "string"
-  description = "Liberty farm web server name"
-  default = "websrv"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_farm_webserverPort
-variable "LibertyCentralNode01_was_liberty_farm_webserverPort" {
-  type = "string"
-  description = "Liberty farm HTTP Web server port"
-  default = "88"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_install_dir
-variable "LibertyCentralNode01_was_liberty_install_dir" {
-  type = "string"
-  description = "The installation root directory for the WebSphere Liberty product binaries"
-  default = "/opt/IBM/WebSphere/Liberty"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_install_grp
-variable "LibertyCentralNode01_was_liberty_install_grp" {
-  type = "string"
-  description = "Operating system group name that will be assigned to the product installation"
-  default = "root"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_install_user
-variable "LibertyCentralNode01_was_liberty_install_user" {
-  type = "string"
-  description = "Operating system userid that will be used to install the product. Userid will be created if it does not exist"
-  default = "root"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_feature
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_feature" {
-  type = "string"
-  description = "Liberty features that should be included in the server definition"
-  default = "webProfile-7.0 adminCenter-1.0"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_httpport
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_httpport" {
-  type = "string"
-  description = "Liberty server http port"
-  default = "9080"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_httpsport
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_httpsport" {
-  type = "string"
-  description = "Liberty server https port"
-  default = "9443"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_id
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_id" {
-  type = "string"
-  description = "Liberty keystore id"
-  default = "defaultKeyStore"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_password
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_password" {
-  type = "string"
-  description = "Liberty Keystore password"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_name
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_name" {
-  type = "string"
-  description = "Liberty server name"
-  default = "defaultServer"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name" {
-  type = "string"
-  description = "Liberty administrative user name"
-  default = "admin"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password" {
-  type = "string"
-  description = "Liberty administrative user name password"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role
-variable "LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role" {
-  type = "string"
-  description = "liberty admin user role"
-  default = "admin"
-}
-
-#Variable : LibertyCentralNode01_was_liberty_wlp_user_dir
-variable "LibertyCentralNode01_was_liberty_wlp_user_dir" {
-  type = "string"
-  description = "Liberty directory which product configuration will be written"
-  default = "/opt/IBM/WebSphere/Liberty/usr"
-}
-
-
 ##### LibertyNode01 variables #####
 #Variable : LibertyNode01-image
 variable "LibertyNode01-image" {
@@ -312,7 +312,7 @@ variable "LibertyNode01-os_admin_user" {
 #Variable : LibertyNode01_ssh_private_key_path
 variable "LibertyNode01_ssh_private_key_path" {
   type = "string"
-  description = "Liberty private key path"
+  description = "Absolute path of the Liberty private key"
   default = "/root/.ssh/CAMkey.pem"
 }
 
@@ -333,74 +333,62 @@ variable "LibertyNode01_was_liberty_edition" {
 #Variable : LibertyNode01_was_liberty_farm_central_node
 variable "LibertyNode01_was_liberty_farm_central_node" {
   type = "string"
-  description = "Liberty farm central node"
-}
-
-#Variable : LibertyNode01_was_liberty_farm_httpd_plugins_dir
-variable "LibertyNode01_was_liberty_farm_httpd_plugins_dir" {
-  type = "string"
-  description = "Liberty http plugins dir"
-}
-
-#Variable : LibertyNode01_was_liberty_farm_httpd_user
-variable "LibertyNode01_was_liberty_farm_httpd_user" {
-  type = "string"
-  description = "Liberty farm http user"
+  description = "Hostname/IP of the liberty node which will gather and merge the plugins. Leave empty when deploying the central node itself"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_logFileName
 variable "LibertyNode01_was_liberty_farm_logFileName" {
   type = "string"
-  description = "liberty farm log File Name"
+  description = "Name of the Liberty farm log file"
   default = "serverfarm.log"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_pluginInstallRoot
 variable "LibertyNode01_was_liberty_farm_pluginInstallRoot" {
   type = "string"
-  description = "Liberty farm plugin Install Root"
+  description = "pluginInstallRoot"
   default = "plugin_install_root"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_sslCertlabel
 variable "LibertyNode01_was_liberty_farm_sslCertlabel" {
   type = "string"
-  description = "Liberty farm ssl Cert label"
+  description = "Name of the ssl Cert label which will be added to the keystore"
   default = "definedbyuser"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_sslKeyringLocation
 variable "LibertyNode01_was_liberty_farm_sslKeyringLocation" {
   type = "string"
-  description = "Liberty farm ssl Stashfile directory"
+  description = "Full path to the liberty farm ssl Keyring, path must not include the name of the Keyring file"
   default = "/tmp/liberty/sslkeyring"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_sslStashfileLocation
 variable "LibertyNode01_was_liberty_farm_sslStashfileLocation" {
   type = "string"
-  description = "Liberty farm ssl Stashfile directory"
+  description = "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file"
   default = "/tmp/liberty/stashfile"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_webserverName
 variable "LibertyNode01_was_liberty_farm_webserverName" {
   type = "string"
-  description = "Liberty farm web server name"
+  description = "A descriptive name for the web server"
   default = "websrv"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_webserverPort
 variable "LibertyNode01_was_liberty_farm_webserverPort" {
   type = "string"
-  description = "Liberty farm HTTP Web server port"
+  description = "HTTP Transport port that the webserver is listening on"
   default = "88"
 }
 
 #Variable : LibertyNode01_was_liberty_farm_webserverhost
 variable "LibertyNode01_was_liberty_farm_webserverhost" {
   type = "string"
-  description = "Liberty web server host"
+  description = "Host name of the web server, not this DNS name must be resolvable"
 }
 
 #Variable : LibertyNode01_was_liberty_install_dir
@@ -427,61 +415,61 @@ variable "LibertyNode01_was_liberty_install_user" {
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_feature
 variable "LibertyNode01_was_liberty_liberty_servers_server1_feature" {
   type = "string"
-  description = "Liberty features that should be included in the server definition"
+  description = "Lists the Liberty features that should be included in the feature manager list. For example, webProfile-7.0 adminCenter-1.0"
   default = "webProfile-7.0 adminCenter-1.0"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_httpport
 variable "LibertyNode01_was_liberty_liberty_servers_server1_httpport" {
   type = "string"
-  description = "Liberty server http port"
+  description = "HTTP Transport value that will be set in the defaultHttpEndpoint endpoint in server.xml"
   default = "9080"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_httpsport
 variable "LibertyNode01_was_liberty_liberty_servers_server1_httpsport" {
   type = "string"
-  description = "Liberty server https port"
+  description = "Secure HTTP Transport value that will be set in the defaultHttpEndpoint endpoint in server.xml"
   default = "9443"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_keystore_id
 variable "LibertyNode01_was_liberty_liberty_servers_server1_keystore_id" {
   type = "string"
-  description = "Liberty keystore id"
+  description = "Keystore id that will be used when setting up the keyStore attribute in the server.xml"
   default = "defaultKeyStore"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_keystore_password
 variable "LibertyNode01_was_liberty_liberty_servers_server1_keystore_password" {
   type = "string"
-  description = "Liberty Keystore password"
+  description = "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_name
 variable "LibertyNode01_was_liberty_liberty_servers_server1_name" {
   type = "string"
-  description = "Liberty server name"
+  description = "Name of the initial Liberty server to be created during provisioning"
   default = "defaultServer"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_name
 variable "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_name" {
   type = "string"
-  description = "Liberty administrative user name"
+  description = "Administrative console username used for accessing the console, the associated password is the admin_user password"
   default = "admin"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_password
 variable "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_password" {
   type = "string"
-  description = "Liberty administrative user name password"
+  description = "Password for the Liberty administrative user name, this value to be stored in the Chef Vault"
 }
 
 #Variable : LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role
 variable "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role" {
   type = "string"
-  description = "liberty admin user role"
+  description = "Liberty role for which administrative users are to be added to, the admin_user will be added to this role by default"
   default = "admin"
 }
 
@@ -494,125 +482,125 @@ variable "LibertyNode01_was_liberty_wlp_user_dir" {
 
 
 #########################################################
-##### Resource : LibertyCentralNode01
+##### Resource : CentralNode01
 #########################################################
 
-variable "LibertyCentralNode01_domain" {
+variable "CentralNode01_domain" {
   type = "string"
   description = "Domain Name of virtual machine"
 }
 
-variable "LibertyCentralNode01-os_password" {
+variable "CentralNode01-os_password" {
   type = "string"
   description = "Operating System Password for the Operating System User to access virtual machine"
 }
 
-variable "LibertyCentralNode01_folder" {
+variable "CentralNode01_folder" {
   description = "Target vSphere folder for virtual machine"
 }
 
-variable "LibertyCentralNode01_datacenter" {
+variable "CentralNode01_datacenter" {
   description = "Target vSphere datacenter for virtual machine creation"
 }
 
-variable "LibertyCentralNode01_number_of_vcpu" {
+variable "CentralNode01_number_of_vcpu" {
   description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
   default = "2"
 }
 
-variable "LibertyCentralNode01_memory" {
+variable "CentralNode01_memory" {
   description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
   default = "2048"
 }
 
-variable "LibertyCentralNode01_cluster" {
+variable "CentralNode01_cluster" {
   description = "Target vSphere cluster to host the virtual machine"
 }
 
-variable "LibertyCentralNode01_dns_suffixes" {
+variable "CentralNode01_dns_suffixes" {
   type = "list"
   description = "Name resolution suffixes for the virtual network adapter"
 }
 
-variable "LibertyCentralNode01_dns_servers" {
+variable "CentralNode01_dns_servers" {
   type = "list"
   description = "DNS servers for the virtual network adapter"
 }
 
-variable "LibertyCentralNode01_network_interface_label" {
+variable "CentralNode01_network_interface_label" {
   description = "vSphere port group or network label for virtual machine's vNIC"
 }
 
-variable "LibertyCentralNode01_ipv4_gateway" {
+variable "CentralNode01_ipv4_gateway" {
   description = "IPv4 gateway for vNIC configuration"
 }
 
-variable "LibertyCentralNode01_ipv4_address" {
+variable "CentralNode01_ipv4_address" {
   description = "IPv4 address for vNIC configuration"
 }
 
-variable "LibertyCentralNode01_ipv4_prefix_length" {
+variable "CentralNode01_ipv4_prefix_length" {
   description = "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32"
 }
 
-variable "LibertyCentralNode01_root_disk_datastore" {
+variable "CentralNode01_root_disk_datastore" {
   description = "Data store or storage cluster name for target virtual machine's disks"
 }
 
-variable "LibertyCentralNode01_root_disk_type" {
+variable "CentralNode01_root_disk_type" {
   type = "string"
   description = "Type of template disk volume"
   default = "eager_zeroed"
 }
 
-variable "LibertyCentralNode01_root_disk_controller_type" {
+variable "CentralNode01_root_disk_controller_type" {
   type = "string"
   description = "Type of template disk controller"
   default = "scsi"
 }
 
-variable "LibertyCentralNode01_root_disk_keep_on_remove" {
+variable "CentralNode01_root_disk_keep_on_remove" {
   type = "string"
   description = "Delete template disk volume when the virtual machine is deleted"
   default = "false"
 }
 
 # vsphere vm
-resource "vsphere_virtual_machine" "LibertyCentralNode01" {
-  name = "${var.LibertyCentralNode01-name}"
-  folder = "${var.LibertyCentralNode01_folder}"
-  datacenter = "${var.LibertyCentralNode01_datacenter}"
-  vcpu = "${var.LibertyCentralNode01_number_of_vcpu}"
-  memory = "${var.LibertyCentralNode01_memory}"
-  cluster = "${var.LibertyCentralNode01_cluster}"
-  dns_suffixes = "${var.LibertyCentralNode01_dns_suffixes}"
-  dns_servers = "${var.LibertyCentralNode01_dns_servers}"
-  domain = "${var.LibertyCentralNode01_domain}"
+resource "vsphere_virtual_machine" "CentralNode01" {
+  name = "${var.CentralNode01-name}"
+  folder = "${var.CentralNode01_folder}"
+  datacenter = "${var.CentralNode01_datacenter}"
+  vcpu = "${var.CentralNode01_number_of_vcpu}"
+  memory = "${var.CentralNode01_memory}"
+  cluster = "${var.CentralNode01_cluster}"
+  dns_suffixes = "${var.CentralNode01_dns_suffixes}"
+  dns_servers = "${var.CentralNode01_dns_servers}"
+  domain = "${var.CentralNode01_domain}"
 
   network_interface {
-    label = "${var.LibertyCentralNode01_network_interface_label}"
-    ipv4_gateway = "${var.LibertyCentralNode01_ipv4_gateway}"
-    ipv4_address = "${var.LibertyCentralNode01_ipv4_address}"
-    ipv4_prefix_length = "${var.LibertyCentralNode01_ipv4_prefix_length}"
+    label = "${var.CentralNode01_network_interface_label}"
+    ipv4_gateway = "${var.CentralNode01_ipv4_gateway}"
+    ipv4_address = "${var.CentralNode01_ipv4_address}"
+    ipv4_prefix_length = "${var.CentralNode01_ipv4_prefix_length}"
   }
 
   disk {
-    type = "${var.LibertyCentralNode01_root_disk_type}"
-    template = "${var.LibertyCentralNode01-image}"
-    datastore = "${var.LibertyCentralNode01_root_disk_datastore}"
-    keep_on_remove = "${var.LibertyCentralNode01_root_disk_keep_on_remove}"
-    controller_type = "${var.LibertyCentralNode01_root_disk_controller_type}"
+    type = "${var.CentralNode01_root_disk_type}"
+    template = "${var.CentralNode01-image}"
+    datastore = "${var.CentralNode01_root_disk_datastore}"
+    keep_on_remove = "${var.CentralNode01_root_disk_keep_on_remove}"
+    controller_type = "${var.CentralNode01_root_disk_controller_type}"
   }
 
   # Specify the connection
   connection {
     type = "ssh"
-    user = "${var.LibertyCentralNode01-os_admin_user}"
-    password = "${var.LibertyCentralNode01-os_password}"
+    user = "${var.CentralNode01-os_admin_user}"
+    password = "${var.CentralNode01-os_password}"
   }
 
   provisioner "file" {
-    destination = "LibertyCentralNode01_add_ssh_key.sh"
+    destination = "CentralNode01_add_ssh_key.sh"
     content     = <<EOF
 ##############################################################
 # Licensed Materials - Property of IBM
@@ -676,31 +664,31 @@ EOF
   # Execute the script remotely
   provisioner "remote-exec" {
     inline = [
-      "sudo bash -c 'chmod +x LibertyCentralNode01_add_ssh_key.sh'",
-      "sudo bash -c './LibertyCentralNode01_add_ssh_key.sh  \"${var.LibertyCentralNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> LibertyCentralNode01_add_ssh_key.log 2>&1'"
+      "sudo bash -c 'chmod +x CentralNode01_add_ssh_key.sh'",
+      "sudo bash -c './CentralNode01_add_ssh_key.sh  \"${var.CentralNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> CentralNode01_add_ssh_key.log 2>&1'"
     ]
   }
 
 }
 
 #########################################################
-##### Resource : LibertyCentralNode01_chef_bootstrap_comp
+##### Resource : CentralNode01_chef_bootstrap_comp
 #########################################################
 
-resource "camc_bootstrap" "LibertyCentralNode01_chef_bootstrap_comp" {
-  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.LibertyCentralNode01"]
-  name = "LibertyCentralNode01_chef_bootstrap_comp"
+resource "camc_bootstrap" "CentralNode01_chef_bootstrap_comp" {
+  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.CentralNode01"]
+  name = "CentralNode01_chef_bootstrap_comp"
   camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyCentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyCentralNode01.network_interface.0.ipv4_address}",
-  "node_name": "${var.LibertyCentralNode01-name}",
+  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "node_name": "${var.CentralNode01-name}",
   "node_attributes": {
     "ibm_internal": {
       "stack_id": "${random_id.stack_id.hex}",
@@ -717,47 +705,47 @@ EOT
 
 
 #########################################################
-##### Resource : LibertyCentralNode01_liberty_create_server
+##### Resource : CentralNode01_liberty_create_server
 #########################################################
 
-resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_create_server" {
-  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_install","camc_softwaredeploy.LibertyCentralNode01_liberty_install"]
-  name = "LibertyCentralNode01_liberty_create_server"
+resource "camc_softwaredeploy" "CentralNode01_liberty_create_server" {
+  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_install","camc_softwaredeploy.CentralNode01_liberty_install"]
+  name = "CentralNode01_liberty_create_server"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyCentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyCentralNode01.network_interface.0.ipv4_address}",
-  "node_name": "${var.LibertyCentralNode01-name}",
+  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_create_server]",
   "node_attributes": {
     "ibm_internal": {
       "roles": "[liberty_create_server]"
     },
     "was_liberty": {
-      "install_dir": "${var.LibertyCentralNode01_was_liberty_install_dir}",
+      "install_dir": "${var.CentralNode01_was_liberty_install_dir}",
       "liberty_servers": {
         "server1": {
-          "feature": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_feature}",
-          "httpport": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_httpport}",
-          "httpsport": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_httpsport}",
+          "feature": "${var.CentralNode01_was_liberty_liberty_servers_server1_feature}",
+          "httpport": "${var.CentralNode01_was_liberty_liberty_servers_server1_httpport}",
+          "httpsport": "${var.CentralNode01_was_liberty_liberty_servers_server1_httpsport}",
           "jvm_params": "-Xms256m -Xmx2048m",
-          "keystore_id": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_id}",
-          "name": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_name}",
+          "keystore_id": "${var.CentralNode01_was_liberty_liberty_servers_server1_keystore_id}",
+          "name": "${var.CentralNode01_was_liberty_liberty_servers_server1_name}",
           "users": {
             "admin_user": {
-              "name": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name}",
-              "role": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role}"
+              "name": "${var.CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_name}",
+              "role": "${var.CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_role}"
             }
           }
         }
       },
-      "wlp_user_dir": "${var.LibertyCentralNode01_was_liberty_wlp_user_dir}"
+      "wlp_user_dir": "${var.CentralNode01_was_liberty_wlp_user_dir}"
     }
   },
   "vault_content": {
@@ -766,10 +754,10 @@ resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_create_server" {
       "was_liberty": {
         "liberty_servers": {
           "server1": {
-            "keystore_password": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_keystore_password}",
+            "keystore_password": "${var.CentralNode01_was_liberty_liberty_servers_server1_keystore_password}",
             "users": {
               "admin_user": {
-                "password": "${var.LibertyCentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password}"
+                "password": "${var.CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password}"
               }
             }
           }
@@ -784,23 +772,23 @@ EOT
 
 
 #########################################################
-##### Resource : LibertyCentralNode01_liberty_install
+##### Resource : CentralNode01_liberty_install
 #########################################################
 
-resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_install" {
-  depends_on = ["camc_bootstrap.LibertyNode01_chef_bootstrap_comp","camc_bootstrap.LibertyCentralNode01_chef_bootstrap_comp"]
-  name = "LibertyCentralNode01_liberty_install"
+resource "camc_softwaredeploy" "CentralNode01_liberty_install" {
+  depends_on = ["camc_bootstrap.LibertyNode01_chef_bootstrap_comp","camc_bootstrap.CentralNode01_chef_bootstrap_comp"]
+  name = "CentralNode01_liberty_install"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyCentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyCentralNode01.network_interface.0.ipv4_address}",
-  "node_name": "${var.LibertyCentralNode01-name}",
+  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_install]",
   "node_attributes": {
     "ibm": {
@@ -813,12 +801,12 @@ resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_install" {
       "roles": "[liberty_install]"
     },
     "was_liberty": {
-      "base_version": "${var.LibertyCentralNode01_was_liberty_base_version}",
-      "edition": "${var.LibertyCentralNode01_was_liberty_edition}",
-      "install_dir": "${var.LibertyCentralNode01_was_liberty_install_dir}",
-      "install_grp": "${var.LibertyCentralNode01_was_liberty_install_grp}",
-      "install_user": "${var.LibertyCentralNode01_was_liberty_install_user}",
-      "wlp_user_dir": "${var.LibertyCentralNode01_was_liberty_wlp_user_dir}"
+      "base_version": "${var.CentralNode01_was_liberty_base_version}",
+      "edition": "${var.CentralNode01_was_liberty_edition}",
+      "install_dir": "${var.CentralNode01_was_liberty_install_dir}",
+      "install_grp": "${var.CentralNode01_was_liberty_install_grp}",
+      "install_user": "${var.CentralNode01_was_liberty_install_user}",
+      "wlp_user_dir": "${var.CentralNode01_was_liberty_wlp_user_dir}"
     }
   },
   "vault_content": {
@@ -837,23 +825,23 @@ EOT
 
 
 #########################################################
-##### Resource : LibertyCentralNode01_liberty_plugin_generate
+##### Resource : CentralNode01_liberty_plugin_generate
 #########################################################
 
-resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_plugin_generate" {
+resource "camc_softwaredeploy" "CentralNode01_liberty_plugin_generate" {
   depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_plugin_merge_setup"]
-  name = "LibertyCentralNode01_liberty_plugin_generate"
+  name = "CentralNode01_liberty_plugin_generate"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyCentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyCentralNode01.network_interface.0.ipv4_address}",
-  "node_name": "${var.LibertyCentralNode01-name}",
+  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_plugin_generate]",
   "node_attributes": {
     "ibm_internal": {
@@ -861,19 +849,19 @@ resource "camc_softwaredeploy" "LibertyCentralNode01_liberty_plugin_generate" {
     },
     "ssh": {
       "private_key": {
-        "path": "${var.LibertyCentralNode01_ssh_private_key_path}"
+        "path": "${var.CentralNode01_ssh_private_key_path}"
       }
     },
     "was_liberty": {
       "farm": {
-        "central_node": "${var.LibertyCentralNode01_was_liberty_farm_central_node}",
-        "logFileName": "${var.LibertyCentralNode01_was_liberty_farm_logFileName}",
-        "pluginInstallRoot": "${var.LibertyCentralNode01_was_liberty_farm_pluginInstallRoot}",
-        "sslCertlabel": "${var.LibertyCentralNode01_was_liberty_farm_sslCertlabel}",
-        "sslKeyringLocation": "${var.LibertyCentralNode01_was_liberty_farm_sslKeyringLocation}",
-        "sslStashfileLocation": "${var.LibertyCentralNode01_was_liberty_farm_sslStashfileLocation}",
-        "webserverName": "${var.LibertyCentralNode01_was_liberty_farm_webserverName}",
-        "webserverPort": "${var.LibertyCentralNode01_was_liberty_farm_webserverPort}"
+        "central_node": "${var.CentralNode01_was_liberty_farm_central_node}",
+        "logFileName": "${var.CentralNode01_was_liberty_farm_logFileName}",
+        "pluginInstallRoot": "${var.CentralNode01_was_liberty_farm_pluginInstallRoot}",
+        "sslCertlabel": "${var.CentralNode01_was_liberty_farm_sslCertlabel}",
+        "sslKeyringLocation": "${var.CentralNode01_was_liberty_farm_sslKeyringLocation}",
+        "sslStashfileLocation": "${var.CentralNode01_was_liberty_farm_sslStashfileLocation}",
+        "webserverName": "${var.CentralNode01_was_liberty_farm_webserverName}",
+        "webserverPort": "${var.CentralNode01_was_liberty_farm_webserverPort}"
       }
     }
   }
@@ -1110,7 +1098,7 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LibertyNode01_liberty_create_server" {
-  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_install","camc_softwaredeploy.LibertyCentralNode01_liberty_install"]
+  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_install","camc_softwaredeploy.CentralNode01_liberty_install"]
   name = "LibertyNode01_liberty_create_server"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -1177,7 +1165,7 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LibertyNode01_liberty_install" {
-  depends_on = ["camc_bootstrap.LibertyNode01_chef_bootstrap_comp","camc_bootstrap.LibertyCentralNode01_chef_bootstrap_comp"]
+  depends_on = ["camc_bootstrap.LibertyNode01_chef_bootstrap_comp","camc_bootstrap.CentralNode01_chef_bootstrap_comp"]
   name = "LibertyNode01_liberty_install"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -1276,7 +1264,7 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_merge" {
-  depends_on = ["camc_softwaredeploy.LibertyCentralNode01_liberty_plugin_generate","camc_softwaredeploy.LibertyNode01_liberty_plugin_generate"]
+  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_plugin_generate","camc_softwaredeploy.CentralNode01_liberty_plugin_generate"]
   name = "LibertyNode01_liberty_plugin_merge"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -1301,8 +1289,29 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_merge" {
     },
     "was_liberty": {
       "farm": {
-        "httpd_plugins_dir": "${var.LibertyNode01_was_liberty_farm_httpd_plugins_dir}",
-        "httpd_user": "${var.LibertyNode01_was_liberty_farm_httpd_user}",
+        "httpd_plugins_dir": {
+          "default": "undefined",
+          "description": "undefined",
+          "descriptive": "undefined",
+          "hidden": "undefined",
+          "parm_type": "undefined",
+          "precedence_level": "undefined",
+          "required": "undefined",
+          "secret": "undefined",
+          "selectable": "undefined",
+          "type": "undefined"
+        },
+        "httpd_user": {
+          "default": "undefined",
+          "descriptive": "undefined",
+          "hidden": "undefined",
+          "parm_type": "undefined",
+          "precedence_level": "undefined",
+          "required": "undefined",
+          "secret": "undefined",
+          "selectable": "undefined",
+          "type": "undefined"
+        },
         "logFileName": "${var.LibertyNode01_was_liberty_farm_logFileName}",
         "pluginInstallRoot": "${var.LibertyNode01_was_liberty_farm_pluginInstallRoot}",
         "sslCertlabel": "${var.LibertyNode01_was_liberty_farm_sslCertlabel}",
@@ -1324,7 +1333,7 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_merge_setup" {
-  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_create_server","camc_softwaredeploy.LibertyCentralNode01_liberty_create_server"]
+  depends_on = ["camc_softwaredeploy.LibertyNode01_liberty_create_server","camc_softwaredeploy.CentralNode01_liberty_create_server"]
   name = "LibertyNode01_liberty_plugin_merge_setup"
   camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -1384,15 +1393,15 @@ resource "camc_vaultitem" "VaultItem" {
 EOT
 }
 
-output "LibertyCentralNode01_ip" {
-  value = "VM IP Address : ${vsphere_virtual_machine.LibertyCentralNode01.network_interface.0.ipv4_address}"
+output "CentralNode01_ip" {
+  value = "VM IP Address : ${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}"
 }
 
-output "LibertyCentralNode01_name" {
-  value = "${var.LibertyCentralNode01-name}"
+output "CentralNode01_name" {
+  value = "${var.CentralNode01-name}"
 }
 
-output "LibertyCentralNode01_roles" {
+output "CentralNode01_roles" {
   value = "liberty_create_server,liberty_install,liberty_plugin_generate"
 }
 

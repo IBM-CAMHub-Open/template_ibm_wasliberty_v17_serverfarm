@@ -1,4 +1,4 @@
-# Template - IBM Liberty V17 server farm topology
+# Template - IBM WAS Liberty V17 server farm topology
 Template Version - 1.0
 
 ## Description
@@ -97,21 +97,6 @@ The following table describes the nodes and relevant software component deployed
     <th>Description</th>
   </tr>
   <tr>
-    <td>LibertyCentralNode01</code></td>
-    <td>liberty_create_server</code></td>
-    <td>create and configure a liberty server instance</code></td>
-  </tr>
-  <tr>
-    <td>LibertyCentralNode01</code></td>
-    <td>liberty_install</code></td>
-    <td>installs WAS Liberty Base</code></td>
-  </tr>
-  <tr>
-    <td>LibertyCentralNode01</code></td>
-    <td>liberty_plugin_generate</code></td>
-    <td>create and configure a liberty server farm</code></td>
-  </tr>
-  <tr>
     <td>LibertyNode01</code></td>
     <td>liberty_plugin_merge</code></td>
     <td>create and configure a liberty server farm</code></td>
@@ -134,6 +119,21 @@ The following table describes the nodes and relevant software component deployed
   <tr>
     <td>LibertyNode01</code></td>
     <td>liberty_plugin_merge_setup</code></td>
+    <td>create and configure a liberty server farm</code></td>
+  </tr>
+  <tr>
+    <td>CentralNode01</code></td>
+    <td>liberty_create_server</code></td>
+    <td>create and configure a liberty server instance</code></td>
+  </tr>
+  <tr>
+    <td>CentralNode01</code></td>
+    <td>liberty_install</code></td>
+    <td>installs WAS Liberty Base</code></td>
+  </tr>
+  <tr>
+    <td>CentralNode01</code></td>
+    <td>liberty_plugin_generate</code></td>
     <td>create and configure a liberty server farm</code></td>
   </tr>
 </table>
