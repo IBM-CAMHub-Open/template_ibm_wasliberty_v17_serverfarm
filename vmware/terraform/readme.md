@@ -1,9 +1,9 @@
-# Template - IBM WAS Liberty V17 server farm topology
+# Template - IBM WebSphere Application Server Liberty V17 server farm
 Template Version - 1.0
 
 ## Description
 
-This template will install the Liberty server farm topology with 2 nodes.<br>
+This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.<br>
 
 ## Features
 
@@ -20,6 +20,7 @@ V1.0<br>
 Red Hat Enterprise Linux 7<br>
 Red Hat Enterprise Linux 6<br>
 Ubuntu 16.04<br>
+Ubuntu 14.04<br>
 <br>
 ### Topology
 
@@ -28,21 +29,20 @@ Ubuntu 16.04<br>
 <br>
 ### Software Deployed
 
-IBM Liberty version 17<br>
+IBM WebSphere Application Server Liberty V17<br>
 <br>
 ### Default Virtual Machine Settings
 
-Central node<br>
-   vCPU = 1, Memory = 4GB, Storage = 25GB<br>
-Liberty node<br>
-   vCPU = 1, Memory = 4GB, Storage = 25GB<br>
+ vCPU 2, Memory (GB) 4<br>
 <br>
 ### Usage and Special Notes
 
 1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>
-2. Installation is via Installation Manager, please ensure this has been correctly installed on the Repo Server.<br>
-3. Modify the libertynode_was_liberty_edition variable in CAM Variables to change the installation type to base, core or nd.<br>
-4. The plugin is generated on all nodes and merged on the Central node.  <br>
+2. Installation is via Installation Manager, please ensure this has been correctly installed on the repo server.<br>
+3. Modify the libertynode_was_liberty_edition variable in CAM variables to change the installation type to base, core or nd.<br>
+4. The plugin is generated on all nodes and merged on the Central node.<br>
+5. IBM Knowledge Center for WAS Liberty - <a href=\"https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html\" target=\"_blank\">https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html</a><br>
+6. IBM Support Portal - <a href=\"https://www.ibm.com/support/home/\" target=\"_blank\">https://www.ibm.com/support/home/</a><br>
 <br>
 
 
