@@ -19,8 +19,8 @@ V1.0<br>
 
 Red Hat Enterprise Linux 7<br>
 Red Hat Enterprise Linux 6<br>
-Ubuntu 16.04<br>
-Ubuntu 14.04<br>
+Ubuntu 16.04 LTS<br>
+Ubuntu 14.04 LTS<br>
 <br>
 ### Topology
 

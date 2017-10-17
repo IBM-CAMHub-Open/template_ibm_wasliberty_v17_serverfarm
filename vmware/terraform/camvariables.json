@@ -194,7 +194,7 @@
       "label": "Liberty data dir - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -213,10 +213,11 @@
       "name": "CentralNode01_was_liberty_farm_central_node",
       "type": "string",
       "description": "Hostname/IP of the liberty node which will gather and merge the plugins. Leave empty when deploying the central node itself",
-      "hidden": false,
+      "hidden": true,
+      "default": "",
       "label": "Liberty farm central node - CentralNode01",
       "secured": false,
-      "required": true,
+      "required": false,
       "immutable": false,
       "group_name": "centralnode01"
     },
@@ -301,7 +302,7 @@
       "label": "Liberty group name - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -313,7 +314,7 @@
       "label": "Liberty installation userid - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -597,7 +598,7 @@
       "label": "liberty admin user role - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -869,7 +870,7 @@
       "label": "Liberty data dir - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -971,24 +972,24 @@
       "name": "LibertyNode01_was_liberty_install_grp",
       "type": "string",
       "description": "Operating system group name that will be assigned to the product installation",
-      "default": "root",
+      "default": "wasadmin",
       "hidden": false,
       "label": "Liberty group name - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
       "name": "LibertyNode01_was_liberty_install_user",
       "type": "string",
       "description": "Operating system userid that will be used to install the product. Userid will be created if it does not exist",
-      "default": "root",
+      "default": "wasadmin",
       "hidden": false,
       "label": "Liberty installation userid - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -1307,7 +1308,7 @@
       "label": "liberty admin user role - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
