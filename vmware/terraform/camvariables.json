@@ -151,7 +151,7 @@
       "name": "CentralNode01_was_liberty_liberty_servers_server1_keystore_password",
       "type": "string",
       "description": "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault",
-      "hidden": true,
+      "hidden": false,
       "label": "Liberty Keystore password - CentralNode01",
       "secured": true,
       "regex": "^[!-~]{8,32}$",
@@ -230,7 +230,7 @@
       "label": "Liberty farm plugin Install Root - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -242,7 +242,7 @@
       "label": "Liberty farm ssl Cert label - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -254,7 +254,7 @@
       "label": "Liberty farm ssl Stashfile directory - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -266,7 +266,7 @@
       "label": "Liberty farm ssl Stashfile directory - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -338,7 +338,7 @@
       "label": "Liberty private key path - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "centralnode01"
     },
     {
@@ -606,7 +606,7 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": false,
+      "hidden": true,
       "label": "liberty farm log File Name - CentralNode01",
       "secured": false,
       "required": true,
@@ -827,7 +827,7 @@
       "name": "LibertyNode01_was_liberty_liberty_servers_server1_keystore_password",
       "type": "string",
       "description": "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault",
-      "hidden": true,
+      "hidden": false,
       "label": "Liberty Keystore password - LibertyNode01",
       "secured": true,
       "regex": "^[!-~]{8,32}$",
@@ -905,7 +905,7 @@
       "label": "Liberty farm plugin Install Root - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -917,7 +917,7 @@
       "label": "Liberty farm ssl Cert label - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -929,7 +929,7 @@
       "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -941,7 +941,7 @@
       "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -1013,7 +1013,7 @@
       "label": "Liberty private key path - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -1316,7 +1316,7 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": false,
+      "hidden": true,
       "label": "liberty farm log File Name - LibertyNode01",
       "secured": false,
       "required": true,
