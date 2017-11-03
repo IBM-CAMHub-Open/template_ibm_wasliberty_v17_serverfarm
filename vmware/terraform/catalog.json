@@ -1,7 +1,7 @@
 {
     "name": "IBM WebSphere Application Server Liberty V17 server farm - VMware vSphere",
     "description": "This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "imageUrl": "",
     "image": "",
     "type": "chefcontent",
