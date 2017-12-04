@@ -11,31 +11,26 @@
 ##############################################################
 # Keys - CAMC (public/private) & optional User Key (public) 
 ##############################################################
-variable "user_public_ssh_key" {
-  type = "string"
-  description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
-  default = "None"
-}
-
-variable "ibm_pm_public_ssh_key" {
-  description = "Public CAMC SSH key value which is used to connect to a guest, used on VMware only."
+variable "ibm_pm_public_ssh_key_name" {
+  description = "Public CAMC SSH key name used to connect to the virtual guest."
 }
 
 variable "ibm_pm_private_ssh_key" {
   description = "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest."
 }
 
-variable "allow_unverified_ssl" {
-  description = "Communication with vsphere server with self signed certificate"
-  default = "true"
+variable "user_public_ssh_key" {
+  type = "string"
+  description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
+  default = "None"
 }
 
 ##############################################################
-# Define the vsphere provider 
+# Define the ibm provider 
 ##############################################################
-provider "vsphere" {
-  allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 0.4"
+#define the ibm provider
+provider "ibm" {
+  version = "~> 0.5"
 }
 
 provider "camc" {
@@ -44,6 +39,14 @@ provider "camc" {
 
 provider "random" {
   version = "~> 1.0"
+}
+
+##############################################################
+# Reference public key in Devices>Manage>SSH Keys in SL console) 
+##############################################################
+data "ibm_compute_ssh_key" "ibm_pm_public_key" {
+  label = "${var.ibm_pm_public_ssh_key_name}"
+  most_recent = "true"
 }
 
 resource "random_id" "stack_id" {
@@ -59,12 +62,28 @@ variable "ibm_stack_name" {
 }
 
 #### Default OS Admin User Map ####
+variable "default_os_admin_user" {
+  type        = "map"
+  description = "look up os_admin_user using resource image"
+  default = {
+    UBUNTU_16_64 = "root"
+    REDHAT_7_64 = "root"
+  }
+}
 
 ##### CentralNode01 variables #####
 #Variable : CentralNode01-image
 variable "CentralNode01-image" {
   type = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
+  default = "REDHAT_7_64"
+}
+
+#Variable : CentralNode01-mgmt-network-public
+variable "CentralNode01-mgmt-network-public" {
+  type = "string"
+  description = "Expose and use public IP of virtual machine for internal communication"
+  default = "true"
 }
 
 #Variable : CentralNode01-name
@@ -304,6 +323,14 @@ variable "ibm_sw_repo_user" {
 variable "LibertyNode01-image" {
   type = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
+  default = "REDHAT_7_64"
+}
+
+#Variable : LibertyNode01-mgmt-network-public
+variable "LibertyNode01-mgmt-network-public" {
+  type = "string"
+  description = "Expose and use public IP of virtual machine for internal communication"
+  default = "true"
 }
 
 #Variable : LibertyNode01-name
@@ -496,127 +523,106 @@ variable "LibertyNode01_was_liberty_wlp_user_dir" {
 }
 
 
+##### ungrouped variables #####
+##### domain name #####
+variable "runtime_domain" {
+  description = "domain name"
+  default = "cam.ibm.com"
+}
+
+
 #########################################################
 ##### Resource : CentralNode01
 #########################################################
 
-variable "CentralNode01-os_password" {
-  type = "string"
-  description = "Operating System Password for the Operating System User to access virtual machine"
-}
 
-variable "CentralNode01_folder" {
-  description = "Target vSphere folder for virtual machine"
-}
-
+#Parameter : CentralNode01_datacenter
 variable "CentralNode01_datacenter" {
-  description = "Target vSphere datacenter for virtual machine creation"
-}
-
-variable "CentralNode01_domain" {
-  description = "Domain Name of virtual machine"
-}
-
-variable "CentralNode01_number_of_vcpu" {
-  description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
-  default = "2"
-}
-
-variable "CentralNode01_memory" {
-  description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
-  default = "2048"
-}
-
-variable "CentralNode01_cluster" {
-  description = "Target vSphere cluster to host the virtual machine"
-}
-
-variable "CentralNode01_dns_suffixes" {
-  type = "list"
-  description = "Name resolution suffixes for the virtual network adapter"
-}
-
-variable "CentralNode01_dns_servers" {
-  type = "list"
-  description = "DNS servers for the virtual network adapter"
-}
-
-variable "CentralNode01_network_interface_label" {
-  description = "vSphere port group or network label for virtual machine's vNIC"
-}
-
-variable "CentralNode01_ipv4_gateway" {
-  description = "IPv4 gateway for vNIC configuration"
-}
-
-variable "CentralNode01_ipv4_address" {
-  description = "IPv4 address for vNIC configuration"
-}
-
-variable "CentralNode01_ipv4_prefix_length" {
-  description = "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32"
-}
-
-variable "CentralNode01_adapter_type" {
-  description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
-}
-
-variable "CentralNode01_root_disk_datastore" {
-  description = "Data store or storage cluster name for target virtual machine's disks"
-}
-
-variable "CentralNode01_root_disk_type" {
   type = "string"
-  description = "Type of template disk volume"
-  default = "eager_zeroed"
+  description = "IBMCloud datacenter where infrastructure resources will be deployed"
+  default = "dal05"
 }
 
-variable "CentralNode01_root_disk_controller_type" {
-  type = "string"
-  description = "Type of template disk controller"
-  default = "scsi"
-}
 
-variable "CentralNode01_root_disk_keep_on_remove" {
+#Parameter : CentralNode01_private_network_only
+variable "CentralNode01_private_network_only" {
   type = "string"
-  description = "Delete template disk volume when the virtual machine is deleted"
+  description = "Provision the virtual machine with only private IP"
   default = "false"
 }
 
-# vsphere vm
-resource "vsphere_virtual_machine" "CentralNode01" {
-  name = "${var.CentralNode01-name}"
-  domain = "${var.CentralNode01_domain}"
-  folder = "${var.CentralNode01_folder}"
+
+#Parameter : CentralNode01_number_of_cores
+variable "CentralNode01_number_of_cores" {
+  type = "string"
+  description = "Number of CPU cores, which is required to be a positive Integer"
+  default = "2"
+}
+
+
+#Parameter : CentralNode01_memory
+variable "CentralNode01_memory" {
+  type = "string"
+  description = "Amount of Memory (MBs), which is required to be one or more times of 1024"
+  default = "2048"
+}
+
+
+#Parameter : CentralNode01_network_speed
+variable "CentralNode01_network_speed" {
+  type = "string"
+  description = "Bandwidth of network communication applied to the virtual machine"
+  default = "10"
+}
+
+
+#Parameter : CentralNode01_hourly_billing
+variable "CentralNode01_hourly_billing" {
+  type = "string"
+  description = "Billing cycle: hourly billed or monthly billed"
+  default = "true"
+}
+
+
+#Parameter : CentralNode01_dedicated_acct_host_only
+variable "CentralNode01_dedicated_acct_host_only" {
+  type = "string"
+  description = "Shared or dedicated host, where dedicated host usually means higher performance and cost"
+  default = "false"
+}
+
+
+#Parameter : CentralNode01_local_disk
+variable "CentralNode01_local_disk" {
+  type = "string"
+  description = "User local disk or SAN disk"
+  default = "false"
+}
+
+variable "CentralNode01_root_disk_size" {
+  type = "string"
+  description = "Root Disk Size - CentralNode01"
+  default = "25"
+}
+
+resource "ibm_compute_vm_instance" "CentralNode01" {
+  hostname = "${var.CentralNode01-name}"
+  os_reference_code = "${var.CentralNode01-image}"
+  domain = "${var.runtime_domain}"
   datacenter = "${var.CentralNode01_datacenter}"
-  vcpu = "${var.CentralNode01_number_of_vcpu}"
+  network_speed = "${var.CentralNode01_network_speed}"
+  hourly_billing = "${var.CentralNode01_hourly_billing}"
+  private_network_only = "${var.CentralNode01_private_network_only}"
+  cores = "${var.CentralNode01_number_of_cores}"
   memory = "${var.CentralNode01_memory}"
-  cluster = "${var.CentralNode01_cluster}"
-  dns_suffixes = "${var.CentralNode01_dns_suffixes}"
-  dns_servers = "${var.CentralNode01_dns_servers}"
-
-  network_interface {
-    label = "${var.CentralNode01_network_interface_label}"
-    ipv4_gateway = "${var.CentralNode01_ipv4_gateway}"
-    ipv4_address = "${var.CentralNode01_ipv4_address}"
-    ipv4_prefix_length = "${var.CentralNode01_ipv4_prefix_length}"
-    adapter_type = "${var.CentralNode01_adapter_type}"
-  }
-
-  disk {
-    type = "${var.CentralNode01_root_disk_type}"
-    template = "${var.CentralNode01-image}"
-    datastore = "${var.CentralNode01_root_disk_datastore}"
-    keep_on_remove = "${var.CentralNode01_root_disk_keep_on_remove}"
-    controller_type = "${var.CentralNode01_root_disk_controller_type}"
-  }
-
-  # Specify the connection
+  disks = ["${var.CentralNode01_root_disk_size}"]
+  dedicated_acct_host_only = "${var.CentralNode01_dedicated_acct_host_only}"
+  local_disk = "${var.CentralNode01_local_disk}"
+  ssh_key_ids = ["${data.ibm_compute_ssh_key.ibm_pm_public_key.id}"]
+  # Specify the ssh connection
   connection {
-    type = "ssh"
-    user = "${var.CentralNode01-os_admin_user}"
-    password = "${var.CentralNode01-os_password}"
+    user = "${var.CentralNode01-os_admin_user == "" ? lookup(var.default_os_admin_user, var.CentralNode01-image) : var.CentralNode01-os_admin_user}"
+    private_key = "${base64decode(var.ibm_pm_private_ssh_key)}"
   }
 
   provisioner "file" {
@@ -631,47 +637,34 @@ resource "vsphere_virtual_machine" "CentralNode01" {
 # =================================================================
 #!/bin/bash
 
-if (( $# != 3 )); then
-echo "usage: arg 1 is user, arg 2 is public key, arg3 is CAMC Public Key"
-exit -1
+if (( $# != 2 )); then
+    echo "usage: arg 1 is user, arg 2 is public key"
+    exit -1
 fi
 
-userid="$1"
-ssh_key="$2"
-camc_ssh_key="$3"
+userid=$1
+ssh_key=$2
+
+if [[ $ssh_key = 'None' ]]; then
+  echo "skipping add, 'None' specified"
+  exit 0
+fi
 
 user_home=$(eval echo "~$userid")
 user_auth_key_file=$user_home/.ssh/authorized_keys
-echo "$user_auth_key_file"
 if ! [ -f $user_auth_key_file ]; then
-echo "$user_auth_key_file does not exist on this system, creating."
-mkdir $user_home/.ssh
-chmod 700 $user_home/.ssh
-touch $user_home/.ssh/authorized_keys
-chmod 600 $user_home/.ssh/authorized_keys
+  echo "$user_auth_key_file does not exist on this system"
+  exit -1
 else
-echo "user_home : $user_home"
+  echo "user_home --> $user_home"
 fi
 
-if [[ $ssh_key = 'None' ]]; then
-echo "skipping user key add, 'None' specified"
-else
-echo "$user_auth_key_file"
-echo "$ssh_key" >> "$user_auth_key_file"
+echo $ssh_key >> $user_auth_key_file
 if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
+  echo "failed to add to $user_auth_key_file"
+  exit -1
 else
-echo "updated $user_auth_key_file"
-fi
-fi
-
-echo "$camc_ssh_key" >> "$user_auth_key_file"
-if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
-else
-echo "updated $user_auth_key_file"
+  echo "updated $user_auth_key_file"
 fi
 
 EOF
@@ -681,7 +674,7 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x CentralNode01_add_ssh_key.sh'",
-      "bash -c './CentralNode01_add_ssh_key.sh  \"${var.CentralNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> CentralNode01_add_ssh_key.log 2>&1'"
+      "bash -c './CentralNode01_add_ssh_key.sh  \"${var.CentralNode01-os_admin_user}\" \"${var.user_public_ssh_key}\">> CentralNode01_add_ssh_key.log 2>&1'"
     ]
   }
 
@@ -692,7 +685,7 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "CentralNode01_chef_bootstrap_comp" {
-  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.CentralNode01"]
+  depends_on = ["camc_vaultitem.VaultItem","ibm_compute_vm_instance.CentralNode01"]
   name = "CentralNode01_chef_bootstrap_comp"
   camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -700,10 +693,10 @@ resource "camc_bootstrap" "CentralNode01_chef_bootstrap_comp" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.CentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.CentralNode01-image) : var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.CentralNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.CentralNode01.ipv4_address_private : ibm_compute_vm_instance.CentralNode01.ipv4_address}",
   "node_name": "${var.CentralNode01-name}",
   "node_attributes": {
     "ibm_internal": {
@@ -733,10 +726,10 @@ resource "camc_softwaredeploy" "CentralNode01_liberty_create_server" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.CentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.CentralNode01-image) : var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.CentralNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.CentralNode01.ipv4_address_private : ibm_compute_vm_instance.CentralNode01.ipv4_address}",
   "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_create_server]",
   "node_attributes": {
@@ -800,10 +793,10 @@ resource "camc_softwaredeploy" "CentralNode01_liberty_install" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.CentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.CentralNode01-image) : var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.CentralNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.CentralNode01.ipv4_address_private : ibm_compute_vm_instance.CentralNode01.ipv4_address}",
   "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_install]",
   "node_attributes": {
@@ -853,10 +846,10 @@ resource "camc_softwaredeploy" "CentralNode01_liberty_plugin_generate" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.CentralNode01-os_admin_user}",
+  "os_admin_user": "${var.CentralNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.CentralNode01-image) : var.CentralNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.CentralNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.CentralNode01.ipv4_address_private : ibm_compute_vm_instance.CentralNode01.ipv4_address}",
   "node_name": "${var.CentralNode01-name}",
   "runlist": "role[liberty_plugin_generate]",
   "node_attributes": {
@@ -890,123 +883,94 @@ EOT
 ##### Resource : LibertyNode01
 #########################################################
 
-variable "LibertyNode01-os_password" {
-  type = "string"
-  description = "Operating System Password for the Operating System User to access virtual machine"
-}
 
-variable "LibertyNode01_folder" {
-  description = "Target vSphere folder for virtual machine"
-}
-
+#Parameter : LibertyNode01_datacenter
 variable "LibertyNode01_datacenter" {
-  description = "Target vSphere datacenter for virtual machine creation"
-}
-
-variable "LibertyNode01_domain" {
-  description = "Domain Name of virtual machine"
-}
-
-variable "LibertyNode01_number_of_vcpu" {
-  description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
-  default = "2"
-}
-
-variable "LibertyNode01_memory" {
-  description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
-  default = "2048"
-}
-
-variable "LibertyNode01_cluster" {
-  description = "Target vSphere cluster to host the virtual machine"
-}
-
-variable "LibertyNode01_dns_suffixes" {
-  type = "list"
-  description = "Name resolution suffixes for the virtual network adapter"
-}
-
-variable "LibertyNode01_dns_servers" {
-  type = "list"
-  description = "DNS servers for the virtual network adapter"
-}
-
-variable "LibertyNode01_network_interface_label" {
-  description = "vSphere port group or network label for virtual machine's vNIC"
-}
-
-variable "LibertyNode01_ipv4_gateway" {
-  description = "IPv4 gateway for vNIC configuration"
-}
-
-variable "LibertyNode01_ipv4_address" {
-  description = "IPv4 address for vNIC configuration"
-}
-
-variable "LibertyNode01_ipv4_prefix_length" {
-  description = "IPv4 prefix length for vNIC configuration. The value must be a number between 8 and 32"
-}
-
-variable "LibertyNode01_adapter_type" {
-  description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
-}
-
-variable "LibertyNode01_root_disk_datastore" {
-  description = "Data store or storage cluster name for target virtual machine's disks"
-}
-
-variable "LibertyNode01_root_disk_type" {
   type = "string"
-  description = "Type of template disk volume"
-  default = "eager_zeroed"
+  description = "IBMCloud datacenter where infrastructure resources will be deployed"
+  default = "dal05"
 }
 
-variable "LibertyNode01_root_disk_controller_type" {
-  type = "string"
-  description = "Type of template disk controller"
-  default = "scsi"
-}
 
-variable "LibertyNode01_root_disk_keep_on_remove" {
+#Parameter : LibertyNode01_private_network_only
+variable "LibertyNode01_private_network_only" {
   type = "string"
-  description = "Delete template disk volume when the virtual machine is deleted"
+  description = "Provision the virtual machine with only private IP"
   default = "false"
 }
 
-# vsphere vm
-resource "vsphere_virtual_machine" "LibertyNode01" {
-  name = "${var.LibertyNode01-name}"
-  domain = "${var.LibertyNode01_domain}"
-  folder = "${var.LibertyNode01_folder}"
+
+#Parameter : LibertyNode01_number_of_cores
+variable "LibertyNode01_number_of_cores" {
+  type = "string"
+  description = "Number of CPU cores, which is required to be a positive Integer"
+  default = "2"
+}
+
+
+#Parameter : LibertyNode01_memory
+variable "LibertyNode01_memory" {
+  type = "string"
+  description = "Amount of Memory (MBs), which is required to be one or more times of 1024"
+  default = "2048"
+}
+
+
+#Parameter : LibertyNode01_network_speed
+variable "LibertyNode01_network_speed" {
+  type = "string"
+  description = "Bandwidth of network communication applied to the virtual machine"
+  default = "10"
+}
+
+
+#Parameter : LibertyNode01_hourly_billing
+variable "LibertyNode01_hourly_billing" {
+  type = "string"
+  description = "Billing cycle: hourly billed or monthly billed"
+  default = "true"
+}
+
+
+#Parameter : LibertyNode01_dedicated_acct_host_only
+variable "LibertyNode01_dedicated_acct_host_only" {
+  type = "string"
+  description = "Shared or dedicated host, where dedicated host usually means higher performance and cost"
+  default = "false"
+}
+
+
+#Parameter : LibertyNode01_local_disk
+variable "LibertyNode01_local_disk" {
+  type = "string"
+  description = "User local disk or SAN disk"
+  default = "false"
+}
+
+variable "LibertyNode01_root_disk_size" {
+  type = "string"
+  description = "Root Disk Size - LibertyNode01"
+  default = "25"
+}
+
+resource "ibm_compute_vm_instance" "LibertyNode01" {
+  hostname = "${var.LibertyNode01-name}"
+  os_reference_code = "${var.LibertyNode01-image}"
+  domain = "${var.runtime_domain}"
   datacenter = "${var.LibertyNode01_datacenter}"
-  vcpu = "${var.LibertyNode01_number_of_vcpu}"
+  network_speed = "${var.LibertyNode01_network_speed}"
+  hourly_billing = "${var.LibertyNode01_hourly_billing}"
+  private_network_only = "${var.LibertyNode01_private_network_only}"
+  cores = "${var.LibertyNode01_number_of_cores}"
   memory = "${var.LibertyNode01_memory}"
-  cluster = "${var.LibertyNode01_cluster}"
-  dns_suffixes = "${var.LibertyNode01_dns_suffixes}"
-  dns_servers = "${var.LibertyNode01_dns_servers}"
-
-  network_interface {
-    label = "${var.LibertyNode01_network_interface_label}"
-    ipv4_gateway = "${var.LibertyNode01_ipv4_gateway}"
-    ipv4_address = "${var.LibertyNode01_ipv4_address}"
-    ipv4_prefix_length = "${var.LibertyNode01_ipv4_prefix_length}"
-    adapter_type = "${var.LibertyNode01_adapter_type}"
-  }
-
-  disk {
-    type = "${var.LibertyNode01_root_disk_type}"
-    template = "${var.LibertyNode01-image}"
-    datastore = "${var.LibertyNode01_root_disk_datastore}"
-    keep_on_remove = "${var.LibertyNode01_root_disk_keep_on_remove}"
-    controller_type = "${var.LibertyNode01_root_disk_controller_type}"
-  }
-
-  # Specify the connection
+  disks = ["${var.LibertyNode01_root_disk_size}"]
+  dedicated_acct_host_only = "${var.LibertyNode01_dedicated_acct_host_only}"
+  local_disk = "${var.LibertyNode01_local_disk}"
+  ssh_key_ids = ["${data.ibm_compute_ssh_key.ibm_pm_public_key.id}"]
+  # Specify the ssh connection
   connection {
-    type = "ssh"
-    user = "${var.LibertyNode01-os_admin_user}"
-    password = "${var.LibertyNode01-os_password}"
+    user = "${var.LibertyNode01-os_admin_user == "" ? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}"
+    private_key = "${base64decode(var.ibm_pm_private_ssh_key)}"
   }
 
   provisioner "file" {
@@ -1021,47 +985,34 @@ resource "vsphere_virtual_machine" "LibertyNode01" {
 # =================================================================
 #!/bin/bash
 
-if (( $# != 3 )); then
-echo "usage: arg 1 is user, arg 2 is public key, arg3 is CAMC Public Key"
-exit -1
+if (( $# != 2 )); then
+    echo "usage: arg 1 is user, arg 2 is public key"
+    exit -1
 fi
 
-userid="$1"
-ssh_key="$2"
-camc_ssh_key="$3"
+userid=$1
+ssh_key=$2
+
+if [[ $ssh_key = 'None' ]]; then
+  echo "skipping add, 'None' specified"
+  exit 0
+fi
 
 user_home=$(eval echo "~$userid")
 user_auth_key_file=$user_home/.ssh/authorized_keys
-echo "$user_auth_key_file"
 if ! [ -f $user_auth_key_file ]; then
-echo "$user_auth_key_file does not exist on this system, creating."
-mkdir $user_home/.ssh
-chmod 700 $user_home/.ssh
-touch $user_home/.ssh/authorized_keys
-chmod 600 $user_home/.ssh/authorized_keys
+  echo "$user_auth_key_file does not exist on this system"
+  exit -1
 else
-echo "user_home : $user_home"
+  echo "user_home --> $user_home"
 fi
 
-if [[ $ssh_key = 'None' ]]; then
-echo "skipping user key add, 'None' specified"
-else
-echo "$user_auth_key_file"
-echo "$ssh_key" >> "$user_auth_key_file"
+echo $ssh_key >> $user_auth_key_file
 if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
+  echo "failed to add to $user_auth_key_file"
+  exit -1
 else
-echo "updated $user_auth_key_file"
-fi
-fi
-
-echo "$camc_ssh_key" >> "$user_auth_key_file"
-if [ $? -ne 0 ]; then
-echo "failed to add to $user_auth_key_file"
-exit -1
-else
-echo "updated $user_auth_key_file"
+  echo "updated $user_auth_key_file"
 fi
 
 EOF
@@ -1071,7 +1022,7 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x LibertyNode01_add_ssh_key.sh'",
-      "bash -c './LibertyNode01_add_ssh_key.sh  \"${var.LibertyNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> LibertyNode01_add_ssh_key.log 2>&1'"
+      "bash -c './LibertyNode01_add_ssh_key.sh  \"${var.LibertyNode01-os_admin_user}\" \"${var.user_public_ssh_key}\">> LibertyNode01_add_ssh_key.log 2>&1'"
     ]
   }
 
@@ -1082,7 +1033,7 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "LibertyNode01_chef_bootstrap_comp" {
-  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.LibertyNode01"]
+  depends_on = ["camc_vaultitem.VaultItem","ibm_compute_vm_instance.LibertyNode01"]
   name = "LibertyNode01_chef_bootstrap_comp"
   camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token = "${var.ibm_pm_access_token}"
@@ -1090,10 +1041,10 @@ resource "camc_bootstrap" "LibertyNode01_chef_bootstrap_comp" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "node_attributes": {
     "ibm_internal": {
@@ -1123,10 +1074,10 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_create_server" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "runlist": "role[liberty_create_server]",
   "node_attributes": {
@@ -1190,10 +1141,10 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_install" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "runlist": "role[liberty_install]",
   "node_attributes": {
@@ -1243,10 +1194,10 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_generate" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "runlist": "role[liberty_plugin_generate]",
   "node_attributes": {
@@ -1289,10 +1240,10 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_merge" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "runlist": "role[liberty_plugin_merge]",
   "node_attributes": {
@@ -1348,10 +1299,10 @@ resource "camc_softwaredeploy" "LibertyNode01_liberty_plugin_merge_setup" {
   trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.LibertyNode01-os_admin_user}",
+  "os_admin_user": "${var.LibertyNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, var.LibertyNode01-image) : var.LibertyNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
-  "host_ip": "${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}",
+  "host_ip": "${var.LibertyNode01-mgmt-network-public == "false" ? ibm_compute_vm_instance.LibertyNode01.ipv4_address_private : ibm_compute_vm_instance.LibertyNode01.ipv4_address}",
   "node_name": "${var.LibertyNode01-name}",
   "runlist": "role[liberty_plugin_merge_setup]",
   "node_attributes": {
@@ -1401,7 +1352,7 @@ EOT
 }
 
 output "CentralNode01_ip" {
-  value = "VM IP Address : ${vsphere_virtual_machine.CentralNode01.network_interface.0.ipv4_address}"
+  value = "Private : ${ibm_compute_vm_instance.CentralNode01.ipv4_address_private} & Public : ${ibm_compute_vm_instance.CentralNode01.ipv4_address}"
 }
 
 output "CentralNode01_name" {
@@ -1413,7 +1364,7 @@ output "CentralNode01_roles" {
 }
 
 output "LibertyNode01_ip" {
-  value = "VM IP Address : ${vsphere_virtual_machine.LibertyNode01.network_interface.0.ipv4_address}"
+  value = "Private : ${ibm_compute_vm_instance.LibertyNode01.ipv4_address_private} & Public : ${ibm_compute_vm_instance.LibertyNode01.ipv4_address}"
 }
 
 output "LibertyNode01_name" {

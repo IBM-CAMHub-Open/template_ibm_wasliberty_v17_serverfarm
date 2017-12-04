@@ -1,0 +1,6 @@
+{
+    "LibertyNode01_memory": "4096",
+    "LibertyNode01_number_of_cores": "2",
+    "CentralNode01_memory": "4096",
+    "CentralNode01_number_of_cores": "2"
+}

@@ -1,0 +1,9 @@
+{
+    "LibertyNode01_memory": "4096",
+    "LibertyNode01_number_of_vcpu": "2",
+    "CentralNode01_memory": "4096",
+    "CentralNode01_number_of_vcpu": "2",
+    "LibertyNode01_was_liberty_farm_central_node": "9.5.38.196",
+    "LibertyNode01_was_liberty_farm_webserverhost": "9.5.38.196",
+    "CentralNode01_ipv4_address": "9.5.38.196"
+}
