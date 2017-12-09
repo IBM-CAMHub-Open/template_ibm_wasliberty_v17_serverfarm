@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -36,8 +32,8 @@
       "label": "LibertyNode01"
     },
     {
-      "name": "ungrouped",
-      "label": "ungrouped"
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     }
   ],
   "output_groups": [
@@ -153,30 +149,6 @@
       "required": true,
       "immutable": true,
       "group_name": "environment"
-    },
-    {
-      "name": "CentralNode01_local_disk",
-      "type": "string",
-      "description": "User local disk or SAN disk",
-      "default": "false",
-      "hidden": false,
-      "label": "IBMCloud - Local / SAN Disk - CentralNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "true",
-          "label": "True"
-        },
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
     },
     {
       "name": "CentralNode01_datacenter",
@@ -315,8 +287,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_dedicated_acct_host_only",
@@ -339,8 +310,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_hourly_billing",
@@ -363,8 +333,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_network_speed",
@@ -387,8 +356,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_private_network_only",
@@ -411,8 +379,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_memory",
@@ -455,8 +422,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_number_of_cores",
@@ -499,8 +465,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01_was_liberty_edition",
@@ -825,18 +790,17 @@
       "options": [
         {
           "value": "25",
-          "label": "25 GB",
-          "default": true
+          "label": "25 GB"
         },
         {
           "value": "100",
-          "label": "100 GB"
+          "label": "100 GB",
+          "default": true
         }
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "cloud"
     },
     {
       "name": "CentralNode01-name",
@@ -847,30 +811,8 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "CentralNode01-mgmt-network-public",
-      "type": "string",
-      "description": "Expose and use public IP of virtual machine for internal communication",
-      "default": "true",
-      "hidden": false,
-      "label": "Use Public Management Network - CentralNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": false,
-          "label": false
-        },
-        {
-          "value": true,
-          "label": true
-        }
-      ],
-      "required": true,
-      "immutable": false,
       "immutable_after_create": true,
-      "group_name": "centralnode01"
+      "group_name": "virtualmachine"
     },
     {
       "name": "CentralNode01_was_liberty_install_dir",
@@ -903,37 +845,13 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": true,
+      "hidden": false,
       "label": "liberty farm log File Name - CentralNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "centralnode01"
-    },
-    {
-      "name": "LibertyNode01_local_disk",
-      "type": "string",
-      "description": "User local disk or SAN disk",
-      "default": "false",
-      "hidden": false,
-      "label": "IBMCloud - Local / SAN Disk - LibertyNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "true",
-          "label": "True"
-        },
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
     },
     {
       "name": "LibertyNode01_datacenter",
@@ -1072,8 +990,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_dedicated_acct_host_only",
@@ -1096,8 +1013,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_hourly_billing",
@@ -1120,8 +1036,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_network_speed",
@@ -1144,8 +1059,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_private_network_only",
@@ -1168,8 +1082,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_memory",
@@ -1212,8 +1125,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_number_of_cores",
@@ -1256,8 +1168,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_was_liberty_edition",
@@ -1405,10 +1316,10 @@
       "group_name": "libertynode01"
     },
     {
-      "name": "LibertyNode01_was_liberty_farm_sslStashfileLocation",
+      "name": "LibertyNode01_was_liberty_farm_sslKeyringLocation",
       "type": "string",
-      "description": "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file",
-      "default": "/tmp/liberty/stashfile",
+      "description": "Full path to the liberty farm ssl Keyring, path must not include the name of the Keyring file",
+      "default": "/tmp/liberty/sslkeyring",
       "hidden": false,
       "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
       "secured": false,
@@ -1418,10 +1329,10 @@
       "group_name": "libertynode01"
     },
     {
-      "name": "LibertyNode01_was_liberty_farm_sslKeyringLocation",
+      "name": "LibertyNode01_was_liberty_farm_sslStashfileLocation",
       "type": "string",
-      "description": "Full path to the liberty farm ssl Keyring, path must not include the name of the Keyring file",
-      "default": "/tmp/liberty/sslkeyring",
+      "description": "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file",
+      "default": "/tmp/liberty/stashfile",
       "hidden": false,
       "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
       "secured": false,
@@ -1606,18 +1517,17 @@
       "options": [
         {
           "value": "25",
-          "label": "25 GB",
-          "default": true
+          "label": "25 GB"
         },
         {
           "value": "100",
-          "label": "100 GB"
+          "label": "100 GB",
+          "default": true
         }
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01-name",
@@ -1628,30 +1538,8 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "LibertyNode01-mgmt-network-public",
-      "type": "string",
-      "description": "Expose and use public IP of virtual machine for internal communication",
-      "default": "true",
-      "hidden": false,
-      "label": "Use Public Management Network - LibertyNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": false,
-          "label": false
-        },
-        {
-          "value": true,
-          "label": true
-        }
-      ],
-      "required": true,
-      "immutable": false,
       "immutable_after_create": true,
-      "group_name": "libertynode01"
+      "group_name": "virtualmachine"
     },
     {
       "name": "LibertyNode01_was_liberty_install_dir",
@@ -1665,18 +1553,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "libertynode01"
-    },
-    {
-      "name": "runtime_domain",
-      "type": "string",
-      "description": "domain name",
-      "default": "${advanced_content_runtime_chef.runtime_domain}",
-      "hidden": true,
-      "label": "domain name",
-      "secured": false,
-      "required": true,
-      "immutable": true,
-      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role",
@@ -1696,13 +1572,59 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": true,
+      "hidden": false,
       "label": "liberty farm log File Name - LibertyNode01",
       "secured": false,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "libertynode01"
+    },
+    {
+      "name": "CentralNode01_local_disk",
+      "type": "string",
+      "description": "User local disk or SAN disk",
+      "default": "false",
+      "hidden": false,
+      "label": "IBMCloud - Local / SAN Disk - CentralNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False",
+          "default": "true"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
+    },
+    {
+      "name": "LibertyNode01_local_disk",
+      "type": "string",
+      "description": "User local disk or SAN disk",
+      "default": "false",
+      "hidden": false,
+      "label": "IBMCloud - Local / SAN Disk - LibertyNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False",
+          "default": "true"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
     },
     {
       "name": "ibm_pm_private_ssh_key",
@@ -1729,6 +1651,50 @@
       "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
+      "name": "CentralNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "LibertyNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "user_public_ssh_key",
       "type": "string",
       "description": "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH.",
@@ -1738,7 +1704,20 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
+    },
+    {
+      "name": "runtime_domain",
+      "type": "string",
+      "description": "domain name",
+      "default": "${advanced_content_runtime_chef.runtime_domain}",
+      "hidden": true,
+      "label": "domain name",
+      "secured": false,
+      "required": true,
+      "immutable": true,
+      "group_name": "cloud"
     }
   ],
   "template_output_params": [

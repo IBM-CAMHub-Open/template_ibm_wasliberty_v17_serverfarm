@@ -33,7 +33,7 @@ IBM WebSphere Application Server Liberty V17<br>
 <br>
 ### Default Virtual Machine Settings
 
- t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 25<br>
+ t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 100<br>
 <br>
 ### Usage and Special Notes
 

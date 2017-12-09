@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -34,6 +30,10 @@
     {
       "name": "libertynode01",
       "label": "LibertyNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     }
   ],
   "output_groups": [
@@ -317,11 +317,10 @@
       "name": "CentralNode01_was_liberty_farm_central_node",
       "type": "string",
       "description": "Hostname/IP of the liberty node which will gather and merge the plugins. Leave empty when deploying the central node itself",
-      "hidden": true,
-      "default": "",
+      "hidden": false,
       "label": "Liberty farm central node - CentralNode01",
       "secured": false,
-      "required": false,
+      "required": true,
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "centralnode01"
@@ -656,7 +655,7 @@
       "name": "CentralNode01_memory",
       "type": "string",
       "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
-      "default": 2048,
+      "default": 4096,
       "hidden": false,
       "label": "Virtual Machine Memory - CentralNode01",
       "secured": false,
@@ -729,11 +728,11 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": true,
+      "hidden": false,
       "label": "liberty farm log File Name - CentralNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
+      "immutable": false,
       "immutable_after_create": true,
       "group_name": "centralnode01"
     },
@@ -1063,7 +1062,7 @@
       "name": "LibertyNode01_was_liberty_install_user",
       "type": "string",
       "description": "Operating system userid that will be used to install the product. Userid will be created if it does not exist",
-      "default": "wasadmin",
+      "default": "root",
       "hidden": false,
       "label": "Liberty installation userid - LibertyNode01",
       "secured": false,
@@ -1334,7 +1333,7 @@
       "name": "LibertyNode01_memory",
       "type": "string",
       "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
-      "default": 2048,
+      "default": 4096,
       "hidden": false,
       "label": "Virtual Machine Memory - LibertyNode01",
       "secured": false,
@@ -1407,12 +1406,11 @@
       "type": "string",
       "description": "Name of the Liberty farm log file",
       "default": "serverfarm.log",
-      "hidden": true,
+      "hidden": false,
       "label": "liberty farm log File Name - LibertyNode01",
       "secured": false,
       "required": true,
-      "immutable": true,
-      "immutable_after_create": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -1481,6 +1479,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     }
   ],

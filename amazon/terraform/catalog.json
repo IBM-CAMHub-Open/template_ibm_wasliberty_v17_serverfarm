@@ -43,7 +43,7 @@
     "description": "IBM WebSphere Application Server Liberty V17<br>"},
 {
     "title": "Default Virtual Machine Settings",
-    "description": " t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 25<br>"},
+    "description": " t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 100<br>"},
 {
     "title": "Usage and Special Notes",
     "description": "1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>2. Installation is via Installation Manager, please ensure this has been correctly installed on the repo server.<br>3. Modify the libertynode_was_liberty_edition variable in CAM variables to change the installation type to base, core or nd.<br>4. The plugin is generated on all nodes and merged on the Central node.<br>5. IBM Knowledge Center for WAS Liberty - <a href=\"https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html\" target=\"_blank\">https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html</a><br>6. IBM Support Portal - <a href=\"https://www.ibm.com/support/home/\" target=\"_blank\">https://www.ibm.com/support/home/</a><br>"}

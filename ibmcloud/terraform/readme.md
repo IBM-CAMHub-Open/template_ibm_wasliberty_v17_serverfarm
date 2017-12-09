@@ -33,7 +33,7 @@ IBM WebSphere Application Server Liberty V17<br>
 <br>
 ### Default Virtual Machine Settings
 
- Cores 2, RAM (GB) 4, SAN Disk (GB) 25<br>
+ Cores 2, RAM (GB) 4, SAN Disk (GB) 100<br>
 <br>
 ### Usage and Special Notes
 
