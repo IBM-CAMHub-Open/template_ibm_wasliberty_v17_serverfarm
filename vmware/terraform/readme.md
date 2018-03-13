@@ -1,5 +1,5 @@
 # Template - IBM WebSphere Application Server Liberty V17 server farm
-Template Version - 1.0
+Template Version - 2.0
 
 ## Description
 
@@ -10,10 +10,6 @@ This template deploys a server farm topology of WebSphere Application Server Lib
 ### Clouds
 
  VMware<br>
-<br>
-### Template Version
-
-V1.0<br>
 <br>
 ### Operating Systems Supported
 
@@ -33,7 +29,7 @@ IBM WebSphere Application Server Liberty V17<br>
 <br>
 ### Default Virtual Machine Settings
 
- vCPU 2, Memory (GB) 4<br>
+ vCPU 2, Memory (GB) 4, Disk (GB) 100<br>
 <br>
 ### Usage and Special Notes
 
@@ -50,7 +46,7 @@ IBM WebSphere Application Server Liberty V17<br>
 
 ### License and Maintainer
 
-Copyright IBM Corp. 2016, 2017 
+Copyright IBM Corp. 2017, 2018 
 
 ### Target Cloud Type
 
@@ -65,6 +61,7 @@ VMware vSphere
 - IBM WebSphere Liberty 16.0.4
 - IBM WebSphere Liberty 17.0.1
 - IBM WebSphere Liberty 17.0.2
+- IBM WebSphere Liberty 17.0.4
 
 
 ### Minor Versions
@@ -72,6 +69,7 @@ VMware vSphere
 - IBM WebSphere Liberty 16.0.4
 - IBM WebSphere Liberty 17.0.1
 - IBM WebSphere Liberty 17.0.2
+- IBM WebSphere Liberty 17.0.4
 
 
 *Note, these represent base versions only, explicit fixpacks may also be added.*

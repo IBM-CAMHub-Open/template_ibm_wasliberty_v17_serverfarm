@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -43,6 +43,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -138,7 +149,7 @@
       "group_name": "cloud"
     },
     {
-      "name": "LibertyNode01_root_block_device_delete_on_termination",
+      "name": "CentralNode01_root_block_device_delete_on_termination",
       "type": "string",
       "description": "AWS Root Block Device Delete on Termination",
       "default": "true",
@@ -161,7 +172,7 @@
       "group_name": "cloud"
     },
     {
-      "name": "CentralNode01_root_block_device_delete_on_termination",
+      "name": "LibertyNode01_root_block_device_delete_on_termination",
       "type": "string",
       "description": "AWS Root Block Device Delete on Termination",
       "default": "true",
@@ -187,7 +198,7 @@
       "name": "CentralNode01_root_block_device_volume_size",
       "type": "string",
       "description": "AWS Root Block Device Volume Size",
-      "default": 100,
+      "default": "100",
       "hidden": false,
       "label": "AWS Root Block Device Volume Size",
       "secured": false,
@@ -199,7 +210,7 @@
       "name": "LibertyNode01_root_block_device_volume_size",
       "type": "string",
       "description": "AWS Root Block Device Volume Size",
-      "default": 100,
+      "default": "100",
       "hidden": false,
       "label": "AWS Root Block Device Volume Size",
       "secured": false,
@@ -314,7 +325,7 @@
       "group_name": "cloud"
     },
     {
-      "name": "LibertyNode01_associate_public_ip_address",
+      "name": "CentralNode01_associate_public_ip_address",
       "type": "string",
       "description": "AWS assign a public IP to instance",
       "default": "true",
@@ -337,7 +348,7 @@
       "group_name": "cloud"
     },
     {
-      "name": "CentralNode01_associate_public_ip_address",
+      "name": "LibertyNode01_associate_public_ip_address",
       "type": "string",
       "description": "AWS assign a public IP to instance",
       "default": "true",
@@ -404,6 +415,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_im_repo}"
     },
@@ -429,6 +441,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -440,6 +453,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -452,6 +466,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -465,6 +480,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -502,11 +518,10 @@
       "hidden": false,
       "label": "Liberty Keystore password - CentralNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "centralnode01"
     },
     {
@@ -519,7 +534,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -529,11 +543,10 @@
       "hidden": false,
       "label": "Liberty administrative user name password - CentralNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "centralnode01"
     },
     {
@@ -546,7 +559,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -559,7 +571,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -571,7 +582,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -584,7 +594,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -597,7 +606,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -610,7 +618,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -623,7 +630,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -636,7 +642,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -649,7 +654,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -688,7 +692,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -698,6 +701,18 @@
       "default": "/root/.ssh/CAMkey.pem",
       "hidden": false,
       "label": "Liberty private key path - CentralNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "centralnode01"
+    },
+    {
+      "name": "CentralNode01_was_liberty_runas_user",
+      "type": "string",
+      "description": "Operating system userid that will be used to run the product. Userid will be created if it does not exist",
+      "default": "root",
+      "hidden": false,
+      "label": "Liberty runas user - CentralNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -714,7 +729,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -727,7 +741,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -740,14 +753,13 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
       "name": "CentralNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2",
-      "default": "17.0.2",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
+      "default": "17.0.4",
       "hidden": false,
       "label": "Liberty version - CentralNode01",
       "secured": false,
@@ -800,7 +812,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -813,7 +824,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -826,7 +836,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -864,11 +873,10 @@
       "hidden": false,
       "label": "Liberty Keystore password - LibertyNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "libertynode01"
     },
     {
@@ -881,7 +889,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -891,11 +898,10 @@
       "hidden": false,
       "label": "Liberty administrative user name password - LibertyNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "libertynode01"
     },
     {
@@ -908,7 +914,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -921,7 +926,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -933,7 +937,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -945,7 +948,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "descriptive": "Liberty farm user for pushing the merged plugin file to the web server host",
       "group_name": "libertynode01"
     },
     {
@@ -958,7 +961,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -971,20 +973,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
-    },
-    {
-      "name": "LibertyNode01_was_liberty_farm_sslStashfileLocation",
-      "type": "string",
-      "description": "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file",
-      "default": "/tmp/liberty/stashfile",
-      "hidden": false,
-      "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -997,7 +985,18 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "group_name": "libertynode01"
+    },
+    {
+      "name": "LibertyNode01_was_liberty_farm_sslStashfileLocation",
+      "type": "string",
+      "description": "Full path to the Liberty farm ssl Stashfile, path must not include the name of the stash file",
+      "default": "/tmp/liberty/stashfile",
+      "hidden": false,
+      "label": "Liberty farm ssl Stashfile directory - LibertyNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
       "group_name": "libertynode01"
     },
     {
@@ -1010,7 +1009,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1023,7 +1021,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1062,7 +1059,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1072,6 +1068,18 @@
       "default": "/root/.ssh/CAMkey.pem",
       "hidden": false,
       "label": "Liberty private key path - LibertyNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "libertynode01"
+    },
+    {
+      "name": "LibertyNode01_was_liberty_runas_user",
+      "type": "string",
+      "description": "Operating system userid that will be used to run the product. Userid will be created if it does not exist",
+      "default": "root",
+      "hidden": false,
+      "label": "Liberty runas user - LibertyNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -1088,7 +1096,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1101,7 +1108,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1114,14 +1120,13 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
       "name": "LibertyNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2",
-      "default": "17.0.2",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
+      "default": "17.0.4",
       "hidden": false,
       "label": "Liberty version - LibertyNode01",
       "secured": false,
@@ -1139,7 +1144,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1189,6 +1193,50 @@
       "group_name": "virtualmachine"
     },
     {
+      "name": "CentralNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "LibertyNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "LibertyNode01_was_liberty_install_dir",
       "type": "string",
       "description": "The installation root directory for the WebSphere Liberty product binaries",
@@ -1198,8 +1246,19 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
+    },
+    {
+      "name": "runtime_domain",
+      "type": "string",
+      "description": "domain name",
+      "default": "${advanced_content_runtime_chef.runtime_domain}",
+      "hidden": true,
+      "label": "domain name",
+      "secured": false,
+      "required": true,
+      "immutable": true,
+      "group_name": "cloud"
     },
     {
       "name": "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role",
@@ -1211,7 +1270,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1224,7 +1282,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1252,50 +1309,6 @@
       "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
-      "name": "LibertyNode01-mgmt-network-public",
-      "type": "string",
-      "description": "Expose and use public IP of virtual machine for internal communication",
-      "default": "true",
-      "hidden": false,
-      "label": "Use Public Management Network",
-      "secured": false,
-      "options": [
-        {
-          "value": false,
-          "label": false
-        },
-        {
-          "value": true,
-          "label": true
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
-      "name": "CentralNode01-mgmt-network-public",
-      "type": "string",
-      "description": "Expose and use public IP of virtual machine for internal communication",
-      "default": "true",
-      "hidden": false,
-      "label": "Use Public Management Network",
-      "secured": false,
-      "options": [
-        {
-          "value": false,
-          "label": false
-        },
-        {
-          "value": true,
-          "label": true
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "virtualmachine"
-    },
-    {
       "name": "user_public_ssh_key",
       "type": "string",
       "description": "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH.",
@@ -1307,18 +1320,6 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "ssh_keys"
-    },
-    {
-      "name": "runtime_domain",
-      "type": "string",
-      "description": "domain name",
-      "default": "${advanced_content_runtime_chef.runtime_domain}",
-      "hidden": true,
-      "label": "domain name",
-      "secured": false,
-      "required": true,
-      "immutable": true,
-      "group_name": "cloud"
     }
   ],
   "template_output_params": [

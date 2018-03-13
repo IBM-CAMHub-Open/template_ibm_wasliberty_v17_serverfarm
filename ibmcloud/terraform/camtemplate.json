@@ -1,7 +1,7 @@
 {
     "name": "IBM WebSphere Application Server Liberty V17 server farm - IBM",
     "description": "This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.",
-    "version": "1.0.2",
+    "version": "2.0",
     "imageUrl": "",
     "image": "",
     "type": "chefcontent",
@@ -29,9 +29,6 @@
       "bullets": [{
     "title": "Clouds",
     "description": " IBM<br>"},
-{
-    "title": "Template Version",
-    "description": "V1.0<br>"},
 {
     "title": "Operating Systems Supported",
     "description": "Red Hat Enterprise Linux 7<br>Red Hat Enterprise Linux 6<br>Ubuntu 16.04 LTS<br>Ubuntu 14.04 LTS<br>"},

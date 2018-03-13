@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -43,6 +43,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -87,6 +98,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_im_repo}"
     },
@@ -112,6 +124,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -123,6 +136,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -135,6 +149,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -148,6 +163,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -502,11 +518,10 @@
       "hidden": false,
       "label": "Liberty Keystore password - CentralNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "centralnode01"
     },
     {
@@ -519,7 +534,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -529,11 +543,10 @@
       "hidden": false,
       "label": "Liberty administrative user name password - CentralNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "centralnode01"
     },
     {
@@ -546,7 +559,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -559,7 +571,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -571,7 +582,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -584,7 +594,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -597,7 +606,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -610,7 +618,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -623,7 +630,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -636,7 +642,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -649,7 +654,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -688,7 +692,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -698,6 +701,18 @@
       "default": "/root/.ssh/CAMkey.pem",
       "hidden": false,
       "label": "Liberty private key path - CentralNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "centralnode01"
+    },
+    {
+      "name": "CentralNode01_was_liberty_runas_user",
+      "type": "string",
+      "description": "Operating system userid that will be used to run the product. Userid will be created if it does not exist",
+      "default": "root",
+      "hidden": false,
+      "label": "Liberty runas user - CentralNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -714,7 +729,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -727,7 +741,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -740,14 +753,13 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
       "name": "CentralNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2",
-      "default": "17.0.2",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
+      "default": "17.0.4",
       "hidden": false,
       "label": "Liberty version - CentralNode01",
       "secured": false,
@@ -783,7 +795,7 @@
       "name": "CentralNode01_root_disk_size",
       "type": "string",
       "description": "Root Disk Size - CentralNode01",
-      "default": "25",
+      "default": "100",
       "hidden": false,
       "label": "Root Disk Size - CentralNode01",
       "secured": false,
@@ -811,7 +823,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
@@ -824,7 +835,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -837,7 +847,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -850,7 +859,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "centralnode01"
     },
     {
@@ -1205,11 +1213,10 @@
       "hidden": false,
       "label": "Liberty Keystore password - LibertyNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "libertynode01"
     },
     {
@@ -1222,7 +1229,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1232,11 +1238,10 @@
       "hidden": false,
       "label": "Liberty administrative user name password - LibertyNode01",
       "secured": true,
-      "regex": "^[!-~]{8,32}$",
-      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "regex": "^[!-~]{8,32}$",
+      "regexdesc": "Allow 8 to 32 printable ASCII characters except space.",
       "group_name": "libertynode01"
     },
     {
@@ -1249,7 +1254,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1262,7 +1266,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1274,7 +1277,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1286,7 +1288,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
+      "descriptive": "Liberty farm user for pushing the merged plugin file to the web server host",
       "group_name": "libertynode01"
     },
     {
@@ -1299,7 +1301,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1312,7 +1313,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1325,7 +1325,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1338,7 +1337,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1351,7 +1349,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1364,7 +1361,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1403,7 +1399,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1413,6 +1408,18 @@
       "default": "/root/.ssh/CAMkey.pem",
       "hidden": false,
       "label": "Liberty private key path - LibertyNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "libertynode01"
+    },
+    {
+      "name": "LibertyNode01_was_liberty_runas_user",
+      "type": "string",
+      "description": "Operating system userid that will be used to run the product. Userid will be created if it does not exist",
+      "default": "root",
+      "hidden": false,
+      "label": "Liberty runas user - LibertyNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -1429,7 +1436,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1442,7 +1448,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1455,14 +1460,13 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
       "name": "LibertyNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2",
-      "default": "17.0.2",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
+      "default": "17.0.4",
       "hidden": false,
       "label": "Liberty version - LibertyNode01",
       "secured": false,
@@ -1480,7 +1484,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1510,7 +1513,7 @@
       "name": "LibertyNode01_root_disk_size",
       "type": "string",
       "description": "Root Disk Size - LibertyNode01",
-      "default": "25",
+      "default": "100",
       "hidden": false,
       "label": "Root Disk Size - LibertyNode01",
       "secured": false,
@@ -1538,7 +1541,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
@@ -1551,20 +1553,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "libertynode01"
-    },
-    {
-      "name": "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role",
-      "type": "string",
-      "description": "Liberty role for which administrative users are to be added to, the admin_user will be added to this role by default",
-      "default": "admin",
-      "hidden": false,
-      "label": "liberty admin user role - LibertyNode01",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1577,7 +1565,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "libertynode01"
     },
     {
@@ -1718,6 +1705,18 @@
       "required": true,
       "immutable": true,
       "group_name": "cloud"
+    },
+    {
+      "name": "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_role",
+      "type": "string",
+      "description": "Liberty role for which administrative users are to be added to, the admin_user will be added to this role by default",
+      "default": "admin",
+      "hidden": false,
+      "label": "liberty admin user role - LibertyNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "libertynode01"
     }
   ],
   "template_output_params": [
