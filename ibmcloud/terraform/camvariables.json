@@ -104,7 +104,7 @@
     },
     {
       "name": "ibm_im_repo_password",
-      "type": "string",
+      "type": "password",
       "description": "IBM Software  Installation Manager Repository Password",
       "hidden": true,
       "label": "IBM Software Installation Manager Repository Password",
@@ -129,7 +129,7 @@
     },
     {
       "name": "ibm_sw_repo_password",
-      "type": "string",
+      "type": "password",
       "description": "IBM Software Repo Password",
       "hidden": true,
       "label": "IBM Software Repo Password",
@@ -254,7 +254,7 @@
         },
         {
           "value": "mex01",
-          "label": "Querétaro, Mexico"
+          "label": "Quer\u00e9taro, Mexico"
         },
         {
           "value": "sjc01",
@@ -513,7 +513,7 @@
     },
     {
       "name": "CentralNode01_was_liberty_liberty_servers_server1_keystore_password",
-      "type": "string",
+      "type": "password",
       "description": "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault",
       "hidden": false,
       "label": "Liberty Keystore password - CentralNode01",
@@ -538,7 +538,7 @@
     },
     {
       "name": "CentralNode01_was_liberty_liberty_servers_server1_users_admin_user_password",
-      "type": "string",
+      "type": "password",
       "description": "Password for the Liberty administrative user name, this value to be stored in the Chef Vault",
       "hidden": false,
       "label": "Liberty administrative user name password - CentralNode01",
@@ -949,7 +949,7 @@
         },
         {
           "value": "mex01",
-          "label": "Querétaro, Mexico"
+          "label": "Quer\u00e9taro, Mexico"
         },
         {
           "value": "sjc01",
@@ -1208,7 +1208,7 @@
     },
     {
       "name": "LibertyNode01_was_liberty_liberty_servers_server1_keystore_password",
-      "type": "string",
+      "type": "password",
       "description": "Liberty keystore password used to protect the Liberty keystore id, this value will be stored in Chef Vault",
       "hidden": false,
       "label": "Liberty Keystore password - LibertyNode01",
@@ -1233,7 +1233,7 @@
     },
     {
       "name": "LibertyNode01_was_liberty_liberty_servers_server1_users_admin_user_password",
-      "type": "string",
+      "type": "password",
       "description": "Password for the Liberty administrative user name, this value to be stored in the Chef Vault",
       "hidden": false,
       "label": "Liberty administrative user name password - LibertyNode01",
