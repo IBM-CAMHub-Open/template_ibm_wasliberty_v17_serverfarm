@@ -758,8 +758,8 @@
     {
       "name": "CentralNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
-      "default": "17.0.4",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 18.0.2",
+      "default": "18.0.2",
       "hidden": false,
       "label": "Liberty version - CentralNode01",
       "secured": false,
@@ -1136,8 +1136,8 @@
     {
       "name": "LibertyNode01_was_liberty_base_version",
       "type": "string",
-      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4",
-      "default": "17.0.4",
+      "description": "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 18.0.2",
+      "default": "18.0.2",
       "hidden": false,
       "label": "Liberty version - LibertyNode01",
       "secured": false,

@@ -1,6 +1,6 @@
 {
-    "name": "IBM WebSphere Application Server Liberty V17 server farm - VMware vSphere",
-    "description": "This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.",
+    "name": "IBM WebSphere Application Server Liberty server farm - VMware vSphere",
+    "description": "This template deploys a server farm topology of WebSphere Application Server Liberty on 2 Linux virtual machines.",
     "version": "2.0",
     "imageUrl": "",
     "image": "",
@@ -23,9 +23,9 @@
       }
     },
     "metadata": {
-      "displayName": "IBM WebSphere Application Server Liberty V17 server farm",
+      "displayName": "IBM WebSphere Application Server Liberty server farm",
       "providerDisplayName": "VMware vSphere",
-      "longDescription": "This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.",
+      "longDescription": "This template deploys a server farm topology of WebSphere Application Server Liberty on 2 Linux virtual machines.",
       "bullets": [{
     "title": "Clouds",
     "description": " VMware<br>"},
@@ -37,7 +37,7 @@
     "description": "1) Liberty server - Central Node<br>2) Liberty server - Application Node<br>"},
 {
     "title": "Software Deployed",
-    "description": "IBM WebSphere Application Server Liberty V17<br>"},
+    "description": "IBM WebSphere Application Server Liberty<br>"},
 {
     "title": "Default Virtual Machine Settings",
     "description": " vCPU 2, Memory (GB) 4, Disk (GB) 100<br>"},

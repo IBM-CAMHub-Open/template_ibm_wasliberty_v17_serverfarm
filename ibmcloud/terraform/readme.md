@@ -1,9 +1,9 @@
-# Template - IBM WebSphere Application Server Liberty V17 server farm
+# Template - IBM WebSphere Application Server Liberty server farm
 Template Version - 2.0
 
 ## Description
 
-This template deploys a server farm topology of WebSphere Application Server Liberty V17 on 2 Linux virtual machines.<br>
+This template deploys a server farm topology of WebSphere Application Server Liberty on 2 Linux virtual machines.<br>
 
 ## Features
 
@@ -25,7 +25,7 @@ Ubuntu 14.04 LTS<br>
 <br>
 ### Software Deployed
 
-IBM WebSphere Application Server Liberty V17<br>
+IBM WebSphere Application Server Liberty<br>
 <br>
 ### Default Virtual Machine Settings
 
@@ -62,6 +62,7 @@ IBM
 - IBM WebSphere Liberty 17.0.1
 - IBM WebSphere Liberty 17.0.2
 - IBM WebSphere Liberty 17.0.4
+- IBM WebSphere Liberty 18.0.2
 
 
 ### Minor Versions
@@ -70,6 +71,7 @@ IBM
 - IBM WebSphere Liberty 17.0.1
 - IBM WebSphere Liberty 17.0.2
 - IBM WebSphere Liberty 17.0.4
+- IBM WebSphere Liberty 18.0.2
 
 
 *Note, these represent base versions only, explicit fixpacks may also be added.*
@@ -250,6 +252,12 @@ The following files are neccessary on the Software Repository to successfully in
     <th>Repository Root</th>
     <th>File</th>
   </tr>
+  <tr>
+    <td>18.0.2</td>
+    <td>X86_64</td>
+    <td>Installed from IM Repository</td>
+    <td><br>com.ibm.websphere.liberty.BASE_18.0.2.20180619_0403</br><br>com.ibm.websphere.liberty.CORE_18.0.2.20180619_0403</br><br>com.ibm.websphere.liberty.ND_18.0.2.20180619_0403</br></td>
+  </tr>  
   <tr>
     <td>17.0.2</td>
     <td>X86_64</td>

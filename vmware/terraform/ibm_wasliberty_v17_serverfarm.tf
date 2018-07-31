@@ -145,8 +145,8 @@ variable "CentralNode01_ssh_private_key_path" {
 #Variable : CentralNode01_was_liberty_base_version
 variable "CentralNode01_was_liberty_base_version" {
   type        = "string"
-  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.4"
-  default     = "17.0.4"
+  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 18.0.2"
+  default     = "18.0.2"
 }
 
 #Variable : CentralNode01_was_liberty_edition
@@ -389,8 +389,8 @@ variable "LibertyNode01_ssh_private_key_path" {
 #Variable : LibertyNode01_was_liberty_base_version
 variable "LibertyNode01_was_liberty_base_version" {
   type        = "string"
-  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 17.0.2"
-  default     = "17.0.4"
+  description = "The release and fixpack level for WebSphere Liberty to be installed. Example formats are 8.5.5.11 or 18.0.2"
+  default     = "18.0.2"
 }
 
 #Variable : LibertyNode01_was_liberty_edition
