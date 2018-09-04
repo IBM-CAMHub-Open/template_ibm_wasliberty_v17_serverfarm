@@ -650,6 +650,19 @@ variable "CentralNode01_root_disk_size" {
   default     = "100"
 }
 
+module "provision_proxy_CentralNode01" {
+  source 						= "git::https://github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
+  ip                  = "${var.CentralNode01_ipv4_address}"
+  id									= "${vsphere_virtual_machine.CentralNode01.id}"
+  ssh_user            = "${var.CentralNode01-os_admin_user}"
+  ssh_password        = "${var.CentralNode01-os_password}"
+  http_proxy_host     = "${var.http_proxy_host}"
+  http_proxy_user     = "${var.http_proxy_user}"
+  http_proxy_password = "${var.http_proxy_password}"
+  http_proxy_port     = "${var.http_proxy_port}"
+  enable							= "${ length(var.http_proxy_host) > 0 ? "true" : "false"}"
+}
+
 # vsphere vm
 resource "vsphere_virtual_machine" "CentralNode01" {
   name             = "${var.CentralNode01-name}"
@@ -697,6 +710,12 @@ resource "vsphere_virtual_machine" "CentralNode01" {
     type     = "ssh"
     user     = "${var.CentralNode01-os_admin_user}"
     password = "${var.CentralNode01-os_password}"
+    bastion_host        = "${var.bastion_host}"
+    bastion_user        = "${var.bastion_user}"
+    bastion_private_key = "${ length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
+    bastion_port        = "${var.bastion_port}"
+    bastion_host_key    = "${var.bastion_host_key}"
+    bastion_password    = "${var.bastion_password}"    
   }
 
   provisioner "file" {
@@ -781,7 +800,7 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "CentralNode01_chef_bootstrap_comp" {
-  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.CentralNode01"]
+  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.CentralNode01", "module.provision_proxy_CentralNode01"]
   name            = "CentralNode01_chef_bootstrap_comp"
   camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token    = "${var.ibm_pm_access_token}"
@@ -1062,6 +1081,19 @@ variable "LibertyNode01_root_disk_size" {
   default     = "100"
 }
 
+module "provision_proxy_LibertyNode01" {
+  source 						= "git::https://github.com/IBM-CAMHub-Open/terraform-modules.git?ref=1.0//vmware/proxy"
+  ip                  = "${var.LibertyNode01_ipv4_address}"
+  id									= "${vsphere_virtual_machine.LibertyNode01.id}"
+  ssh_user            = "${var.LibertyNode01-os_admin_user}"
+  ssh_password        = "${var.LibertyNode01-os_password}"
+  http_proxy_host     = "${var.http_proxy_host}"
+  http_proxy_user     = "${var.http_proxy_user}"
+  http_proxy_password = "${var.http_proxy_password}"
+  http_proxy_port     = "${var.http_proxy_port}"
+  enable							= "${ length(var.http_proxy_host) > 0 ? "true" : "false"}"
+}
+
 # vsphere vm
 resource "vsphere_virtual_machine" "LibertyNode01" {
   name             = "${var.LibertyNode01-name}"
@@ -1109,6 +1141,12 @@ resource "vsphere_virtual_machine" "LibertyNode01" {
     type     = "ssh"
     user     = "${var.LibertyNode01-os_admin_user}"
     password = "${var.LibertyNode01-os_password}"
+    bastion_host        = "${var.bastion_host}"
+    bastion_user        = "${var.bastion_user}"
+    bastion_private_key = "${ length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
+    bastion_port        = "${var.bastion_port}"
+    bastion_host_key    = "${var.bastion_host_key}"
+    bastion_password    = "${var.bastion_password}"    
   }
 
   provisioner "file" {
@@ -1193,7 +1231,7 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "LibertyNode01_chef_bootstrap_comp" {
-  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.LibertyNode01"]
+  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.LibertyNode01", "module.provision_proxy_LibertyNode01"]
   name            = "LibertyNode01_chef_bootstrap_comp"
   camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
   access_token    = "${var.ibm_pm_access_token}"

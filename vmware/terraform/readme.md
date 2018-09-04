@@ -1,5 +1,5 @@
 # Template - IBM WebSphere Application Server Liberty V17 server farm
-Template Version - 2.0
+Template Version - 2.1
 
 ## Description
 
