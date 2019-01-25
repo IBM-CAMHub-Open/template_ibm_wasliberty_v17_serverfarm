@@ -31,10 +31,10 @@
     "description": " VMware<br>"},
 {
     "title": "Operating Systems Supported",
-    "description": "Red Hat Enterprise Linux 7<br>Red Hat Enterprise Linux 6<br>Ubuntu 16.04 LTS<br>Ubuntu 14.04 LTS<br>"},
+    "description": "<ul><li>Red Hat Enterprise Linux 7</li><li>Red Hat Enterprise Linux 6</li><li>Ubuntu 16.04 LTS</li><li>Ubuntu 14.04 LTS</li></ul>"},
 {
     "title": "Topology",
-    "description": "1) Liberty server - Central Node<br>2) Liberty server - Application Node<br>"},
+    "description": "<ol class=\"list-numbering\"><li>Liberty server - Central Node</li><li>Liberty server - Application Node</li></ol>"},
 {
     "title": "Software Deployed",
     "description": "IBM WebSphere Application Server Liberty<br>"},
@@ -43,7 +43,7 @@
     "description": " vCPU 2, Memory (GB) 4, Disk (GB) 100<br>"},
 {
     "title": "Usage and Special Notes",
-    "description": "1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>2. Installation is via Installation Manager, please ensure this has been correctly installed on the repo server.<br>3. Modify the libertynode_was_liberty_edition variable in CAM variables to change the installation type to base, core or nd.<br>4. The plugin is generated on all nodes and merged on the Central node.<br>5. IBM Knowledge Center for WAS Liberty - <a href=\"https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html\" target=\"_blank\">https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html</a><br>6. IBM Support Portal - <a href=\"https://www.ibm.com/support/home/\" target=\"_blank\">https://www.ibm.com/support/home/</a><br>"}
+    "description": "<ol class=\"list-numbering\"><li>The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.</li><li>Installation is via Installation Manager, please ensure this has been correctly installed on the repo server.</li><li>Modify the libertynode_was_liberty_edition variable in CAM variables to change the installation type to base, core or nd.</li><li>The plugin is generated on all nodes and merged on the Central node.</li><li>IBM Knowledge Center for WAS Liberty - <a href=\"https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html\" target=\"_blank\">https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/as_ditamaps/was900_welcome_liberty.html</a></li><li>IBM Support Portal - <a href=\"https://www.ibm.com/support/home/\" target=\"_blank\">https://www.ibm.com/support/home/</a></li></ol>"}
 ],
       "featuredImageUrl": "",
       "imageUrl": "",
