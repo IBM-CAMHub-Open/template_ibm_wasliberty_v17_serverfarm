@@ -23,7 +23,6 @@
       }
     },
     "metadata": {
-      "displayName": "IBM WebSphere Application Server Liberty server farm",
       "providerDisplayName": "IBM",
       "longDescription": "This template deploys a server farm topology of WebSphere Application Server Liberty on 2 Linux virtual machines.",
       "bullets": [{
